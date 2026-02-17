@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Business Details | Dot Connectors</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1D63ED",
+                        "background-light": "#F8FAFC",
+                        "background-dark": "#0F172A",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #1D63ED;
+        }
+        .ios-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            overscroll-behavior-y: none;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none !important;
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 1px var(--primary-color) !important;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <header
+        class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
+        <div class="max-w-md mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="booking-step-1.html"
+                class="w-10 h-10 flex items-center justify-start text-slate-600 dark:text-slate-400 active:opacity-50 transition-opacity">
+                <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+            </a>
+            <h1 class="text-lg font-bold tracking-tight">Your Business Details</h1>
+            <div class="w-10"></div>
+        </div>
+    </header>
+    <main class="max-w-md mx-auto w-full flex-1 flex flex-col pb-40">
+        <div class="px-6 pt-8 pb-4">
+            <div class="flex items-center gap-3 mb-6">
+                <span
+                    class="text-[10px] font-bold uppercase tracking-widest text-primary bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md">Step
+                    2 of 2</span>
+                <div class="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div class="w-[95%] h-full bg-primary rounded-full"></div>
+                </div>
+            </div>
+            <h2 class="text-2xl font-extrabold mb-2">Almost there!</h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">Tell us a bit more so we can prep for our call.</p>
+        </div>
+        <form class="px-6 space-y-5">
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1" for="name">Full
+                    Name</label>
+                <input
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-3.5 text-sm font-medium focus:ring-0 transition-all"
+                    id="name" placeholder="John Doe" type="text" />
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1"
+                    for="email">Business Email</label>
+                <input
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-3.5 text-sm font-medium focus:ring-0 transition-all"
+                    id="email" placeholder="john@company.com" type="email" />
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1"
+                    for="company">Company Name</label>
+                <input
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-3.5 text-sm font-medium focus:ring-0 transition-all"
+                    id="company" placeholder="Clean Co. Services" type="text" />
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1"
+                    for="revenue">Monthly Revenue Range</label>
+                <select
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-3.5 text-sm font-medium focus:ring-0 transition-all appearance-none"
+                    id="revenue">
+                    <option disabled="" selected="" value="">Select revenue...</option>
+                    <option value="10-20">$10k-$20k</option>
+                    <option value="20-50">$20k-$50k</option>
+                    <option value="50plus">Over $50k</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1"
+                    for="crews">Number of Cleaning Crews</label>
+                <input
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-3.5 text-sm font-medium focus:ring-0 transition-all"
+                    id="crews" min="1" placeholder="e.g. 5" type="number" />
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1"
+                    for="bottleneck">Biggest bottleneck?</label>
+                <textarea
+                    class="w-full bg-slate-50 dark:bg-slate-800/50 border-slate-100 dark:border-slate-800 rounded-2xl px-4 py-3.5 text-sm font-medium focus:ring-0 transition-all resize-none"
+                    id="bottleneck" placeholder="e.g. missed calls, no follow-up, leads falling through cracks..."
+                    rows="3"></textarea>
+            </div>
+        </form>
+    </main>
+    <div
+        class="fixed bottom-0 left-0 right-0 p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 z-50">
+        <div class="max-w-md mx-auto">
+            <a href="confirmation.html"
+                class="w-full bg-primary text-white py-4 px-6 rounded-2xl font-bold text-lg shadow-lg shadow-blue-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                Confirm Booking
+                <span class="material-symbols-outlined">check_circle</span>
+            </a>
+            <p class="text-center text-[10px] text-slate-400 mt-4 uppercase tracking-tighter">By clicking, you agree to
+                our terms of service</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
