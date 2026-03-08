@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dana — The Roofing League</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a14;
+    --paper: #f0eee8;
+    --teal: #0e8a7a;
+    --teal-light: #1ab8a4;
+    --teal-dark: #065a50;
+    --purple: #5a2d82;
+    --gold: #e8b800;
+    --coral: #e84830;
+    --white: #fefdf8;
+    --panel-border: 4px solid var(--ink);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a1a18;
+    font-family: 'Comic Neue', cursive;
+    display: flex;
+    justify-content: center;
+    padding: 30px 16px;
+  }
+
+  .comic-page {
+    background: var(--paper);
+    width: 900px;
+    border: 6px solid var(--ink);
+    box-shadow: 12px 12px 0 #000;
+    position: relative;
+    overflow: hidden;
+  }
+  .comic-page::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px);
+    background-size: 6px 6px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  .cover {
+    background: var(--teal-dark);
+    border-bottom: 6px solid var(--ink);
+    padding: 16px 24px 12px;
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .series-tag {
+    background: var(--gold); color: var(--ink);
+    font-family: 'Bangers', cursive; font-size: 13px; letter-spacing: 2px;
+    padding: 2px 10px; border: 2px solid var(--ink);
+    display: inline-block; margin-bottom: 6px; transform: rotate(-1deg);
+  }
+  .issue-title {
+    font-family: 'Bangers', cursive; font-size: 60px; line-height: 1;
+    color: var(--gold); letter-spacing: 4px;
+    text-shadow: 4px 4px 0 var(--ink), -2px -2px 0 var(--ink), 2px -2px 0 var(--ink), -2px 2px 0 var(--ink);
+  }
+  .issue-subtitle {
+    font-family: 'Bangers', cursive; font-size: 17px;
+    color: #cef4ef; letter-spacing: 2px;
+    text-shadow: 2px 2px 0 var(--ink); margin-top: 4px;
+  }
+  .cover-badge {
+    background: var(--gold); border: 4px solid var(--ink); border-radius: 50%;
+    width: 110px; height: 110px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: rotate(-7deg); flex-shrink: 0; box-shadow: 3px 3px 0 var(--ink);
+  }
+  .cover-badge .lbl { font-family:'Bangers',cursive; font-size:13px; color:var(--ink); letter-spacing:1px; }
+  .cover-badge .num { font-family:'Bangers',cursive; font-size:42px; color:var(--teal-dark); line-height:1; text-shadow:2px 2px 0 var(--ink); }
+  .cover-badge .sub { font-family:'Bangers',cursive; font-size:11px; color:var(--ink); letter-spacing:1px; text-align:center; line-height:1.2; }
+
+  /* ── VILLAIN BANNER ── */
+  .villain-banner {
+    background: var(--ink); color: var(--gold);
+    font-family: 'Bangers', cursive; font-size: 17px; letter-spacing: 3px;
+    text-align: center; padding: 7px 0;
+    border-bottom: 4px solid var(--teal-light);
+    position: relative; z-index: 1;
+  }
+  .villain-banner span { color: var(--coral); }
+
+  /* ── PANEL GRID ── */
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    position: relative; z-index: 1;
+    border-top: var(--panel-border);
+  }
+  .panel {
+    border-right: var(--panel-border);
+    border-bottom: var(--panel-border);
+    position: relative; overflow: hidden;
+    background: var(--white);
+  }
+  .panel-wide { grid-column: span 2; }
+  .panel-tall { grid-row: span 2; }
+
+  /* Scenes */
+  .scene-handoff  { background: linear-gradient(180deg, #c4e8e4 0%, #daf2ef 40%, #b0c8b0 40%, #98b298 70%, #707870 70%, #585858 100%); }
+  .scene-dana     { background: linear-gradient(150deg, #065a50 0%, #0e8a7a 40%, #042a24 100%); }
+  .scene-sms      { background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+  .scene-calendar { background: linear-gradient(135deg, #e8f4f0 0%, #cce8e2 50%, #b0d8d0 100%); }
+  .scene-remind   { background: linear-gradient(180deg, #fff8e8 0%, #fff0c8 40%, #e8d490 40%, #d0bc70 100%); }
+  .scene-noshow   { background: radial-gradient(ellipse at 40% 30%, #3a1a2a 0%, #1a0a14 100%); }
+  .scene-victory  { background: linear-gradient(135deg, #042a24 0%, #0e8a7a 45%, #e8b800 100%); }
+
+  .speedlines {
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0) 0deg, rgba(255,255,255,0) 5deg, rgba(255,255,255,0.05) 5deg, rgba(255,255,255,0.05) 6deg);
+  }
+  .burst {
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-conic-gradient(from 0deg at 50% 110%, transparent 0deg, transparent 7deg, rgba(14,138,122,0.12) 7deg, rgba(14,138,122,0.12) 8deg);
+  }
+
+  /* Captions */
+  .cap {
+    position: absolute; z-index: 20;
+    padding: 5px 10px; border: 2.5px solid var(--ink);
+    font-family: 'Comic Neue', cursive; font-weight: 700; font-size: 11.5px;
+    color: var(--ink); line-height: 1.35;
+  }
+  .cap-gold   { background: var(--gold); }
+  .cap-teal   { background: var(--teal); color: #fff; }
+  .cap-coral  { background: var(--coral); color: #fff; }
+  .cap-purple { background: var(--purple); color: #fff; }
+  .cap-white  { background: var(--white); }
+
+  /* Bubbles */
+  .bub {
+    position: absolute; z-index: 25;
+    background: var(--white); border: 3px solid var(--ink); border-radius: 16px;
+    padding: 7px 11px;
+    font-family: 'Comic Neue', cursive; font-weight: 700; font-size: 11.5px;
+    line-height: 1.35; color: var(--ink);
+  }
+  /* SMS-style bubble: rounded rect, blue */
+  .bub-sms {
+    background: #0a7aff; color: #fff; border-color: #005ace;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 10.5px;
+  }
+  .bub-sms-in {
+    background: #e5e5ea; color: var(--ink); border-color: #ccc;
+    border-radius: 18px 18px 18px 4px;
+    font-size: 10.5px;
+  }
+  /* Tail down-left */
+  .t-dl::after, .t-dl::before { content:''; position:absolute; border:0 solid transparent; }
+  .t-dl::after  { border-top:12px solid var(--ink); border-left:8px solid transparent; border-right:8px solid transparent; bottom:-15px; left:14px; }
+  .t-dl::before { border-top:12px solid var(--white); border-left:8px solid transparent; border-right:8px solid transparent; bottom:-11px; left:14px; z-index:1; }
+  /* Tail down-right */
+  .t-dr::after, .t-dr::before { content:''; position:absolute; border:0 solid transparent; }
+  .t-dr::after  { border-top:12px solid var(--ink); border-left:8px solid transparent; border-right:8px solid transparent; bottom:-15px; right:14px; }
+  .t-dr::before { border-top:12px solid var(--white); border-left:8px solid transparent; border-right:8px solid transparent; bottom:-11px; right:14px; z-index:1; }
+  /* Gold */
+  .b-gold { background: var(--gold); }
+  .b-gold.t-dl::before { border-top-color: var(--gold); }
+  .b-gold.t-dr::before { border-top-color: var(--gold); }
+  /* Villain red */
+  .b-villain { background: #3a0a14; color: #ffaaaa; border-color: var(--coral); }
+  .b-villain.t-dr::before { border-top-color: #3a0a14; }
+
+  /* SFX */
+  .sfx {
+    font-family: 'Bangers', cursive;
+    position: absolute; z-index: 15; line-height: 1;
+  }
+  .s-gold   { color:var(--gold);   text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink); }
+  .s-teal   { color:var(--teal-light); text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink); }
+  .s-coral  { color:var(--coral);  text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink); }
+  .s-white  { color:#fff;          text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink); }
+
+  /* ── DANA CHARACTER ── */
+  /* Head */
+  .d-head {
+    width:36px; height:34px; background:#f0c4a0; border:3px solid var(--ink); border-radius:10px 10px 6px 6px;
+    position:absolute; top:0; left:12px;
+  }
+  .d-head::before { /* bun hair */
+    content:''; position:absolute; top:-10px; left:-2px; width:40px; height:18px;
+    background:#4a2800; border:3px solid var(--ink); border-radius:50% 50% 0 0;
+  }
+  /* bun top knot */
+  .d-bun {
+    position:absolute; top:-20px; left:50%; transform:translateX(-50%);
+    width:14px; height:14px; background:#4a2800; border:3px solid var(--ink); border-radius:50%;
+  }
+  .d-head::after { /* focused eyes */
+    content:'^ ^'; position:absolute; top:10px; left:3px;
+    font-size:9px; font-weight:900; color:var(--ink); letter-spacing:5px;
+  }
+  .d-mouth {
+    position:absolute; top:24px; left:50%; transform:translateX(-50%);
+    width:10px; height:5px; background:var(--ink); border-radius:0 0 8px 8px;
+  }
+  /* Body */
+  .d-body {
+    width:44px; height:44px; background:var(--teal); border:3px solid var(--ink);
+    position:absolute; top:31px; left:8px; border-radius:3px;
+  }
+  .d-body::before { /* calendar icon on chest */
+    content:''; position:absolute;
+    top:6px; left:8px; width:26px; height:24px;
+    background: var(--white); border:2px solid var(--ink); border-radius:3px;
+  }
+  .d-badge {
+    position:absolute; top:8px; left:10px; z-index:2;
+    font-family:'Bangers',cursive; font-size:10px; color:var(--teal-dark);
+    line-height:1; text-align:center;
+  }
+  /* Clipboard arm */
+  .d-arm {
+    width:10px; height:30px; background:var(--teal); border:3px solid var(--ink);
+    position:absolute; top:36px; left:50px; border-radius:2px; transform:rotate(15deg); transform-origin:top center;
+  }
+  .d-clipboard {
+    width:22px; height:28px; background:#f8f4e0; border:3px solid var(--ink); border-radius:3px;
+    position:absolute; top:60px; left:44px; z-index:5;
+  }
+  .d-clipboard::before {
+    content:''; position:absolute; top:3px; left:3px; right:3px;
+    height:3px; background:var(--teal); border-radius:1px;
+    box-shadow:0 6px 0 var(--teal), 0 12px 0 var(--teal), 0 18px 0 var(--teal);
+  }
+  .d-clipboard::after { /* clip */
+    content:''; position:absolute; top:-5px; left:50%; transform:translateX(-50%);
+    width:10px; height:6px; background:#888; border:2px solid var(--ink); border-radius:2px 2px 0 0;
+  }
+  /* Legs */
+  .d-legs { position:absolute; top:73px; left:10px; display:flex; gap:5px; }
+  .d-leg {
+    width:15px; height:28px; background:#1a1a1a; border:3px solid var(--ink); border-radius:2px 2px 0 0;
+    position:relative;
+  }
+  .d-leg::after {
+    content:''; position:absolute; bottom:-6px; left:-2px;
+    width:19px; height:7px; background:#0a0a0a; border:2px solid var(--ink); border-radius:0 4px 4px 0;
+  }
+
+  /* ── NO-SHOW VILLAIN ── */
+  /* Ghost-like, translucent, wispy */
+  .ns-head {
+    width:34px; height:30px; background:rgba(180,160,220,0.85); border:3px solid var(--ink); border-radius:50%;
+    position:absolute; top:0; left:9px;
+  }
+  .ns-head::before { /* ghost top wisps */
+    content:''; position:absolute; top:-8px; left:4px;
+    width:26px; height:12px;
+    background:rgba(180,160,220,0.85); border:3px solid var(--ink);
+    border-radius:50% 50% 0 0;
+    box-shadow: -8px 0 0 rgba(180,160,220,0.6), 8px 0 0 rgba(180,160,220,0.6);
+  }
+  .ns-head::after { /* sneaky X X eyes */
+    content:'x x'; position:absolute; top:9px; left:4px;
+    font-size:9px; font-weight:900; color:var(--ink); letter-spacing:5px;
+  }
+  .ns-body {
+    width:40px; height:46px; position:absolute; top:26px; left:5px;
+    background:rgba(160,140,200,0.8); border:3px solid var(--ink);
+    border-radius:4px 4px 14px 14px;
+  }
+  .ns-body::after { content:'👻'; font-size:20px; position:absolute; top:8px; left:8px; }
+  /* No legs — floats */
+
+  /* ── REX (small handoff cameo) ── */
+  .rx-sm-head {
+    width:28px; height:26px; background:#f5c89a; border:3px solid var(--ink); border-radius:6px 6px 3px 3px;
+    position:absolute; top:0; left:8px;
+  }
+  .rx-sm-head::before {
+    content:''; position:absolute; top:-6px; left:0px; width:28px; height:10px;
+    background:#2a1800; border:3px solid var(--ink); border-radius:8px 8px 0 0;
+  }
+  .rx-sm-body {
+    width:36px; height:36px; background:#1a3a8c; border:3px solid var(--ink);
+    position:absolute; top:24px; left:4px; border-radius:3px;
+  }
+  .rx-sm-body::after { content:'R'; font-family:'Bangers',cursive; font-size:13px; color:#FFD700; position:absolute; right:3px; top:3px; text-shadow:1px 1px 0 #000; }
+  .rx-sm-legs { position:absolute; top:58px; left:7px; display:flex; gap:4px; }
+  .rx-sm-leg { width:12px; height:22px; background:#1a1a1a; border:3px solid var(--ink); border-radius:2px; }
+
+  /* SMS phone screen */
+  .phone-screen {
+    width:110px; height:170px; background:#111; border:3px solid var(--ink); border-radius:14px;
+    position:absolute; overflow:hidden;
+  }
+  .phone-notch {
+    width:40px; height:8px; background:#222; border-radius:0 0 8px 8px;
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+  }
+  .phone-inner {
+    position:absolute; top:12px; left:4px; right:4px; bottom:8px;
+    background:#1c1c1e; border-radius:10px;
+    display:flex; flex-direction:column; padding:8px 6px; gap:5px;
+    overflow:hidden;
+  }
+  .sms-bar {
+    font-family:'Bangers',cursive; font-size:9px; color:#888; letter-spacing:1px; text-align:center;
+    margin-bottom:2px;
+  }
+  .sms-out {
+    align-self:flex-end; background:#0a7aff; color:#fff;
+    border-radius:12px 12px 4px 12px;
+    padding:4px 7px; font-family:'Comic Neue',cursive; font-weight:700; font-size:8.5px;
+    line-height:1.3; max-width:80px;
+  }
+  .sms-in {
+    align-self:flex-start; background:#2c2c2e; color:#fff;
+    border-radius:12px 12px 12px 4px;
+    padding:4px 7px; font-family:'Comic Neue',cursive; font-weight:700; font-size:8.5px;
+    line-height:1.3; max-width:80px;
+  }
+
+  /* Calendar block */
+  .cal-block {
+    background:#fff; border:2px solid var(--ink); border-radius:6px;
+    overflow:hidden; position:absolute;
+  }
+  .cal-header {
+    background:var(--teal); padding:4px 8px;
+    font-family:'Bangers',cursive; font-size:11px; color:#fff; letter-spacing:1px;
+  }
+  .cal-body { padding:5px 8px; }
+  .cal-entry {
+    display:flex; align-items:center; gap:5px;
+    font-family:'Comic Neue',cursive; font-weight:700; font-size:9.5px; color:var(--ink);
+    margin-bottom:4px; line-height:1.2;
+  }
+  .cal-dot {
+    width:8px; height:8px; border-radius:50%; flex-shrink:0; border:1.5px solid var(--ink);
+  }
+
+  /* Reminder sequence */
+  .remind-row {
+    display:flex; align-items:flex-start; gap:7px;
+    background:#fff; border:2px solid var(--ink); border-radius:4px;
+    padding:6px 8px; margin-bottom:6px;
+    font-family:'Comic Neue',cursive; font-weight:700; font-size:10.5px; color:var(--ink);
+    line-height:1.3;
+  }
+  .remind-row.sent { background:var(--gold); }
+  .remind-icon {
+    width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; flex-shrink:0; border:2px solid var(--ink);
+  }
+
+  /* Scorecard mini */
+  .score-row {
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Comic Neue',cursive; font-weight:700; font-size:10px; color:var(--ink);
+    padding:4px 6px; border-bottom:1.5px solid rgba(0,0,0,0.1);
+    line-height:1.25;
+  }
+  .score-row:last-child { border-bottom:none; }
+  .check { color:#00aa44; font-size:13px; }
+
+  /* FOOTER */
+  .footer {
+    border-top: 6px solid var(--ink); background: var(--ink);
+    padding: 10px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .footer-logo { font-family:'Bangers',cursive; font-size:18px; color:var(--gold); letter-spacing:2px; }
+  .footer-logo span { color:var(--teal-light); }
+  .footer-tag  { font-family:'Bangers',cursive; font-size:13px; color:rgba(255,255,255,0.75); letter-spacing:2px; text-align:center; line-height:1.5; }
+  .footer-next { font-family:'Bangers',cursive; font-size:12px; color:#fff; letter-spacing:1px; text-align:right; line-height:1.5; }
+  .footer-next em { color:var(--gold); font-style:normal; }
+</style>
+</head>
+<body>
+<div class="comic-page">
+
+  <!-- HEADER -->
+  <div class="cover">
+    <div>
+      <div class="series-tag">THE ROOFING LEAGUE • ORIGIN SERIES</div>
+      <div class="issue-title">DANA</div>
+      <div class="issue-subtitle">"PUTS THE RIGHT JOB ON THE RIGHT DAY — WITHOUT ANYONE PICKING UP THE PHONE"</div>
+    </div>
+    <div class="cover-badge">
+      <div class="lbl">ISSUE</div>
+      <div class="num">#3</div>
+      <div class="sub">THE<br>ROOFING<br>LEAGUE</div>
+    </div>
+  </div>
+
+  <!-- VILLAIN BANNER -->
+  <div class="villain-banner">
+    📅 TODAY'S VILLAIN: <span>THE NO-SHOW</span> — GHOST OF EMPTY DRIVEWAYS, DESTROYER OF CREW TIME ⚡
+  </div>
+
+  <!-- PANELS -->
+  <div class="panels">
+
+    <!-- PANEL 1: Wide — Rex hands off to Dana (cols 1–2) -->
+    <div class="panel panel-wide scene-handoff" style="min-height:215px;">
+
+      <!-- Road -->
+      <div style="position:absolute; bottom:0; left:-20px; right:0; height:18px; background:#4a4a4a; border-top:3px solid var(--ink);">
+        <div style="position:absolute; top:7px; left:0; right:0; height:4px; background:repeating-linear-gradient(90deg,#fff 0 18px,transparent 18px 36px);"></div>
+      </div>
+
+      <!-- Narration strip top -->
+      <div class="cap cap-gold" style="top:0; left:0; right:0; border-left:none; border-right:none; border-top:none; font-size:12px; padding:7px 14px;">
+        Rex just qualified a hot lead. Now it's time for the handoff to the most organized hero in the league…
+      </div>
+
+      <!-- Rex small on left, passing a glowing baton -->
+      <div style="position:absolute; left:18px; bottom:18px;">
+        <div style="position:relative; width:44px; height:80px;">
+          <div class="rx-sm-head"></div>
+          <div class="rx-sm-body"></div>
+          <div class="rx-sm-legs"><div class="rx-sm-leg"></div><div class="rx-sm-leg"></div></div>
+        </div>
+      </div>
+      <div class="bub t-dl" style="left:56px; bottom:76px; max-width:130px; font-size:10.5px;">
+        Lead qualified!<br>She's all yours, <strong>Dana.</strong> 🤝
+      </div>
+
+      <!-- Glowing baton / handoff arrow -->
+      <div style="position:absolute; bottom:52px; left:108px; right:210px; height:6px; background:linear-gradient(90deg, #FFD700, var(--teal-light)); border:2px solid var(--ink); border-radius:3px; z-index:10;">
+        <div style="position:absolute; right:-10px; top:-5px; font-size:16px;">→</div>
+      </div>
+
+      <!-- Dana center-right -->
+      <div style="position:absolute; right:160px; bottom:18px;">
+        <div style="position:relative; width:60px; height:128px;">
+          <div class="d-head">
+            <div class="d-bun"></div>
+            <div class="d-mouth"></div>
+          </div>
+          <div class="d-body">
+            <div class="d-badge">📅</div>
+          </div>
+          <div class="d-arm"></div>
+          <div class="d-clipboard"></div>
+          <div class="d-legs"><div class="d-leg"></div><div class="d-leg"></div></div>
+        </div>
+      </div>
+      <!-- Dana bubble sits left of her, clear of far-right corner -->
+      <div class="bub b-gold t-dr" style="right:210px; bottom:110px; max-width:120px; font-size:10.5px;">
+        Got it. I'll have them<br><strong>booked in under 10 min.</strong>
+      </div>
+
+      <!-- No-Show villain — far right corner, small, clearly separate from Dana -->
+      <div style="position:absolute; right:10px; bottom:18px; opacity:0.85; transform:scale(0.7); transform-origin:bottom right;">
+        <div class="ns-head"></div>
+        <div class="ns-body"></div>
+      </div>
+      <!-- Villain bubble directly above ghost, far right -->
+      <div class="bub b-villain t-dr" style="right:8px; bottom:128px; max-width:90px; font-size:10px;">
+        Heh… they'll<br>never show up…
+      </div>
+
+    </div><!-- /p1 -->
+
+    <!-- PANEL 2: Dana hero splash (col 3, tall) -->
+    <div class="panel panel-tall scene-dana" style="min-height:430px;">
+      <div class="speedlines"></div>
+
+      <!-- Glow halo -->
+      <div style="position:absolute; bottom:55px; left:50%; transform:translateX(-50%); width:160px; height:160px; border-radius:50%; background:radial-gradient(circle, rgba(232,184,0,0.28) 0%, transparent 70%); pointer-events:none;"></div>
+
+      <!-- Dana large centered -->
+      <div style="position:absolute; bottom:0; left:50%; transform:translateX(-50%);">
+        <div style="position:relative; width:60px; height:128px;">
+          <div class="d-head" style="width:44px; height:40px; left:8px; top:0;">
+            <div class="d-bun" style="width:16px; height:16px; top:-22px;"></div>
+            <div class="d-mouth"></div>
+          </div>
+          <div class="d-body" style="width:54px; height:52px; left:3px; top:38px;">
+            <div class="d-badge" style="font-size:13px; top:10px; left:12px;">📅</div>
+          </div>
+          <div class="d-arm" style="top:50px; left:50px;"></div>
+          <div class="d-clipboard" style="top:68px; left:46px; width:24px; height:30px;"></div>
+          <div class="d-legs" style="top:88px; left:8px;">
+            <div class="d-leg" style="width:19px; height:36px;"></div>
+            <div class="d-leg" style="width:19px; height:36px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div style="position:absolute; top:14px; left:0; right:0; text-align:center; z-index:20;">
+        <div style="font-family:'Bangers',cursive; font-size:52px; color:var(--gold); letter-spacing:5px;
+          text-shadow:4px 4px 0 #000, -2px -2px 0 #000;">DANA</div>
+        <div style="font-family:'Bangers',cursive; font-size:13px; color:rgba(200,255,245,0.9); letter-spacing:2px; margin-top:2px;">
+          AI SCHEDULER • THE ROOFING LEAGUE
+        </div>
+      </div>
+
+      <!-- Power stats -->
+      <div style="position:absolute; top:98px; left:8px; right:8px; z-index:20;
+        background:rgba(0,0,0,0.65); border:2px solid var(--gold); border-radius:4px; padding:7px 10px;">
+        <div style="font-family:'Bangers',cursive; font-size:11px; color:var(--gold); letter-spacing:2px; margin-bottom:4px;">POWER STATS</div>
+        <div style="font-family:'Comic Neue',cursive; font-size:10.5px; font-weight:700; color:#fff; line-height:1.9;">
+          📅 Booking Speed: <span style="color:var(--gold);">&lt;10 MIN</span><br>
+          🔔 Reminder Accuracy: <span style="color:var(--gold);">100%</span><br>
+          👻 No-Shows Recovered: <span style="color:var(--gold);">∞</span>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="bub b-gold t-dl" style="bottom:152px; left:8px; right:8px; text-align:center; font-size:12px; border-radius:10px;">
+        "The job is on the calendar.<br>The crew is notified.<br><strong>No one touched the phone.</strong>"
+      </div>
+
+    </div><!-- /p2 -->
+
+    <!-- PANEL 3: The SMS booking flow (col 1) -->
+    <div class="panel scene-sms" style="min-height:215px;">
+
+      <div class="cap cap-teal" style="top:0; left:0; right:0; border:none; border-bottom:3px solid var(--ink); padding:6px 10px; font-size:12px;">
+        Dana texts the homeowner instantly.
+      </div>
+
+      <!-- Phone screen center -->
+      <div class="phone-screen" style="top:38px; left:50%; transform:translateX(-50%);">
+        <div class="phone-notch"></div>
+        <div class="phone-inner">
+          <div class="sms-bar">DANA • ACE ROOFING</div>
+          <div class="sms-out">Great news! I can get someone out to look at your roof. Thu 10am or Fri 2pm — which works?</div>
+          <div class="sms-in">Friday at 2 works!</div>
+          <div class="sms-out">✅ Confirmed! Friday Mar 13 at 2pm. You'll get a reminder the morning of. See you then!</div>
+        </div>
+      </div>
+
+      <!-- DING SFX -->
+      <div class="sfx s-teal" style="font-size:28px; bottom:16px; left:10px; transform:rotate(-5deg);">DING!</div>
+      <div class="sfx s-gold" style="font-size:14px; bottom:22px; right:14px; transform:rotate(8deg);">✦</div>
+
+    </div><!-- /p3 -->
+
+    <!-- PANEL 4: Calendar sync (cols 2–3, wide) -->
+    <div class="panel panel-wide scene-calendar" style="min-height:215px;">
+
+      <div class="cap cap-teal" style="top:0; left:0; right:0; border:none; border-bottom:3px solid var(--ink); padding:6px 10px; font-size:12px;">
+        In seconds, Dana writes it everywhere — simultaneously.
+      </div>
+
+      <!-- Three calendar/tool blocks -->
+      <!-- AccuLynx -->
+      <div class="cal-block" style="top:44px; left:14px; width:130px;">
+        <div class="cal-header">📋 ACCULYNX</div>
+        <div class="cal-body">
+          <div class="cal-entry"><div class="cal-dot" style="background:var(--teal);"></div>Fri Mar 13 • 2:00pm</div>
+          <div class="cal-entry"><div class="cal-dot" style="background:var(--teal);"></div>Johnson Roof Inspect.</div>
+          <div class="cal-entry"><div class="cal-dot" style="background:#00aa44;"></div>✅ CONFIRMED</div>
+        </div>
+      </div>
+
+      <!-- Google Calendar -->
+      <div class="cal-block" style="top:44px; left:160px; width:130px;">
+        <div class="cal-header" style="background:var(--coral);">📆 GOOGLE CAL</div>
+        <div class="cal-body">
+          <div class="cal-entry"><div class="cal-dot" style="background:var(--coral);"></div>Fri Mar 13 • 2:00pm</div>
+          <div class="cal-entry"><div class="cal-dot" style="background:var(--coral);"></div>Crew: Mike & Tyler</div>
+          <div class="cal-entry"><div class="cal-dot" style="background:#00aa44;"></div>✅ SYNCED</div>
+        </div>
+      </div>
+
+      <!-- GoHighLevel -->
+      <div class="cal-block" style="top:44px; left:306px; width:130px;">
+        <div class="cal-header" style="background:var(--purple);">🔗 GOHIGHLEVEL</div>
+        <div class="cal-body">
+          <div class="cal-entry"><div class="cal-dot" style="background:var(--purple);"></div>Pipeline updated</div>
+          <div class="cal-entry"><div class="cal-dot" style="background:var(--purple);"></div>Stage: Appt. Set</div>
+          <div class="cal-entry"><div class="cal-dot" style="background:#00aa44;"></div>✅ SYNCED</div>
+        </div>
+      </div>
+
+      <!-- Arrow / sync lines -->
+      <div style="position:absolute; bottom:28px; left:14px; right:14px; z-index:10; display:flex; align-items:center; justify-content:center; gap:8px;">
+        <div style="font-family:'Bangers',cursive; font-size:11px; color:var(--teal-dark); letter-spacing:2px; background:rgba(255,255,255,0.8); border:2px solid var(--ink); padding:3px 10px; border-radius:3px;">
+          ⚡ ALL SYNCED IN &lt;3 SECONDS — ZERO DOUBLE-BOOKINGS
+        </div>
+      </div>
+
+    </div><!-- /p4 -->
+
+    <!-- PANEL 5: Reminder sequence (col 1) -->
+    <div class="panel scene-remind" style="min-height:215px;">
+
+      <div class="cap cap-gold" style="top:0; left:0; right:0; border:none; border-bottom:3px solid var(--ink); padding:6px 10px; font-size:12px; color:var(--ink);">
+        Dana's reminder sequence fires automatically.
+      </div>
+
+      <div style="position:absolute; top:38px; left:10px; right:10px; z-index:10;">
+        <div class="remind-row">
+          <div class="remind-icon" style="background:#0055cc; color:#fff;">📱</div>
+          <div><strong>24 hrs before</strong><br>SMS + email reminder sent</div>
+        </div>
+        <div class="remind-row">
+          <div class="remind-icon" style="background:var(--teal); color:#fff;">⏰</div>
+          <div><strong>2 hrs before</strong><br>"See you in 2 hours!" text</div>
+        </div>
+        <div class="remind-row sent">
+          <div class="remind-icon" style="background:var(--teal-dark); color:var(--gold);">🏠</div>
+          <div><strong>Day-of</strong><br>Crew name + ETA sent</div>
+        </div>
+      </div>
+
+    </div><!-- /p5 -->
+
+    <!-- PANEL 6: No-show recovery (col 2) -->
+    <div class="panel scene-noshow" style="min-height:215px;">
+      <div class="speedlines"></div>
+
+      <div class="cap cap-coral" style="top:0; left:0; right:0; border:none; border-bottom:3px solid var(--ink); padding:6px 10px; font-size:12px;">
+        No-Show villain strikes. Dana counters within 30 min.
+      </div>
+
+      <!-- No-Show ghost floating -->
+      <div style="position:absolute; left:14px; top:44px; opacity:0.9;">
+        <div class="ns-head"></div>
+        <div class="ns-body"></div>
+      </div>
+      <div class="bub b-villain t-dl" style="left:62px; top:72px; max-width:110px; font-size:10px;">
+        Empty driveway.<br>Nobody home. 😈
+      </div>
+
+      <!-- Dana mini, right side, undeterred -->
+      <div style="position:absolute; right:14px; bottom:14px;">
+        <div style="position:relative; width:50px; height:106px;">
+          <div class="d-head" style="width:32px; height:28px; left:9px; top:0;">
+            <div class="d-bun" style="width:12px; height:12px; top:-17px; left:50%; transform:translateX(-50%);"></div>
+          </div>
+          <div class="d-body" style="width:40px; height:38px; left:5px; top:26px;">
+            <div class="d-badge" style="font-size:10px; top:6px; left:8px;">📅</div>
+          </div>
+          <div class="d-legs" style="top:62px; left:8px;">
+            <div class="d-leg" style="width:13px; height:24px;"></div>
+            <div class="d-leg" style="width:13px; height:24px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dana recovery bubble — just above her head, right side -->
+      <div class="bub b-gold t-dr" style="bottom:80px; right:6px; max-width:108px; font-size:10px;">
+        Missed you — want to reschedule? Spots as early as <strong>tomorrow.</strong>
+      </div>
+
+      <!-- 30 min timer -->
+      <div style="position:absolute; bottom:10px; left:10px; background:#000; border:2px solid var(--coral); border-radius:4px; padding:3px 8px; z-index:20;">
+        <div style="font-family:'Bangers',cursive; font-size:8px; color:var(--coral); letter-spacing:1px;">RESPONSE IN</div>
+        <div style="font-family:'Bangers',cursive; font-size:20px; color:#ff6644; line-height:1;">30:00</div>
+      </div>
+
+    </div><!-- /p6 -->
+
+    <!-- PANEL 7: Victory — booked, confirmed, crew rolling (col 3) -->
+    <div class="panel scene-victory" style="min-height:215px;">
+      <div class="speedlines"></div>
+      <div class="burst"></div>
+
+      <!-- CONFIRMED SFX -->
+      <div class="sfx s-gold" style="font-size:36px; top:6px; left:50%; transform:translateX(-50%) rotate(-3deg); white-space:nowrap;">CONFIRMED!</div>
+
+      <!-- Stars -->
+      <div class="sfx s-gold" style="font-size:24px; top:10px; left:6px; transform:rotate(-12deg);">★</div>
+      <div class="sfx s-gold" style="font-size:14px; top:5px; right:8px; transform:rotate(8deg);">★</div>
+
+      <!-- No-Show ghost, zapped and fading -->
+      <div style="position:absolute; left:4px; bottom:12px; transform:rotate(28deg) scaleX(-1); opacity:0.4; transform-origin:bottom center; pointer-events:none;">
+        <div class="ns-head" style="background:rgba(140,120,180,0.5);"></div>
+        <div class="ns-body" style="background:rgba(120,100,160,0.5);"></div>
+      </div>
+      <div style="position:absolute; left:44px; bottom:70px; font-family:'Bangers',cursive; font-size:13px; color:rgba(255,255,255,0.5); transform:rotate(-16deg); z-index:10;">…poof…</div>
+
+      <!-- Dana triumphant -->
+      <div style="position:absolute; bottom:0; right:10px;">
+        <div style="position:relative; width:60px; height:128px;">
+          <div class="d-head" style="width:40px; height:36px; left:10px; top:0;">
+            <div class="d-bun" style="width:14px; height:14px; top:-20px; left:50%; transform:translateX(-50%);"></div>
+            <div class="d-mouth"></div>
+          </div>
+          <div class="d-body" style="width:52px; height:50px; left:4px; top:34px;">
+            <div class="d-badge" style="font-size:13px; top:10px; left:12px;">📅</div>
+          </div>
+          <!-- Victory arm raised with clipboard -->
+          <div style="position:absolute; top:28px; left:50px; width:10px; height:32px;
+            background:var(--teal); border:3px solid var(--ink); border-radius:3px;
+            transform:rotate(-38deg); transform-origin:bottom center; z-index:5;"></div>
+          <div style="position:absolute; top:10px; left:52px; width:18px; height:22px;
+            background:#f8f4e0; border:2px solid var(--ink); border-radius:2px; z-index:6;
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Bangers',cursive; font-size:10px; color:var(--teal-dark);">✅</div>
+          <div class="d-legs" style="top:82px; left:6px;">
+            <div class="d-leg" style="width:18px; height:34px;"></div>
+            <div class="d-leg" style="width:18px; height:34px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Win bubble -->
+      <div class="bub b-gold t-dr" style="bottom:118px; right:66px; max-width:112px; font-size:10.5px;">
+        Calendar updated.<br>Crew notified.<br><strong>Nobody called.</strong> 📅
+      </div>
+
+    </div><!-- /p7 -->
+
+  </div><!-- /panels -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">DOT <span>CONNECTORS</span></div>
+    <div class="footer-tag">Every roofing company has villains.<br>We sent 7 heroes.</div>
+    <div class="footer-next">NEXT ISSUE:<br><em>EDDIE — The Estimator</em></div>
+  </div>
+
+</div>
+</body>
+</html>
