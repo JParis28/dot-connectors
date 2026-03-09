@@ -606,39 +606,74 @@
   .timeline {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto; /* dot | title | items */
     gap: 0;
     margin-top: 48px;
     position: relative;
+    align-items: start;
   }
 
+  /* Use a pseudo-element line that sits behind the circles */
   .timeline::before {
     content: '';
     position: absolute;
-    top: 32px;
-    left: 10%;
-    right: 10%;
+    top: 40px;
+    left: calc(16.67% + 42px);
+    right: calc(16.67% + 42px);
     height: 1px;
     background: var(--border);
+    z-index: 0;
   }
 
   .timeline-item {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
     padding: 0 32px;
     position: relative;
     text-align: center;
+    align-items: start;
+    justify-items: center;
   }
 
   .day-dot {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
     background: var(--card);
     border: 2px solid var(--accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px;
     position: relative;
     z-index: 1;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .day-dot-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .day-dot-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  .day-dot-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 1px;
   }
 
   .day-num {
@@ -659,10 +694,26 @@
 
   .day-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
+    font-size: 24px;
     letter-spacing: 1px;
     color: var(--text);
-    margin-bottom: 12px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    align-self: end;
+  }
+
+  .day-range {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+    align-self: center;
   }
 
   .day-items {
@@ -670,15 +721,18 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+    align-self: start;
   }
 
   .day-items li {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--soft);
-    padding-left: 14px;
+    padding-left: 18px;
     position: relative;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .day-items li::before {
@@ -687,6 +741,27 @@
     left: 0;
     color: var(--accent);
     font-size: 10px;
+    top: 3px;
+  }
+
+  .timeline-callout {
+    margin-top: 48px;
+    padding: 20px 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    color: var(--soft);
+    line-height: 1.7;
+  }
+
+  .timeline-callout strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
   }
 
   /* ─── PIPELINE ─────────────────────────── */
@@ -973,14 +1048,19 @@
 
     .timeline-item {
       padding: 0;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
       align-items: flex-start;
     }
 
     .day-dot {
       margin: 0 0 16px 0;
+    }
+
+    .day-title {
+      text-align: left;
+    }
+
+    .timeline-callout {
+      max-width: 100%;
     }
 
     /* Pipeline */
@@ -1376,22 +1456,16 @@
 
 <!-- ─── 30 DAY TIMELINE ───────────────────── -->
 <section class="timeline-section">
-  <div class="reveal">
+  <div class="reveal" style="text-align: center;">
     <div class="section-eyebrow">The Install</div>
     <h2 class="section-headline">Live in 30 Days. Done-For-You.</h2>
-    <p style="font-size: 16px; color: var(--soft); max-width: 600px; margin-top: 16px; line-height: 1.7; font-weight: 300;">Here's exactly what happens after you sign. The only thing that takes time is getting your texting number approved by the carriers — that's a government-mandated process that takes 1–3 weeks. We submit it on Day 1 so it's never sitting on our end.</p>
+    <p style="font-size: 16px; color: var(--soft); max-width: 600px; margin: 16px auto 0; line-height: 1.7; font-weight: 300;">Here's exactly what happens after you sign. The only thing that takes time is getting your texting number approved by the carriers — that's a government-mandated process that takes 1–3 weeks. We submit it on Day 1 so it's never sitting on our end.</p>
   </div>
 
   <div class="timeline reveal">
     <div class="timeline-item">
-      <div class="day-dot">
-        <div>
-          <div class="day-num" style="font-size: 14px; letter-spacing: 0;">Kick</div>
-          <div class="day-label">off</div>
-        </div>
-      </div>
+      <div class="day-dot"><div class="day-dot-label"><span class="day-dot-sub">Day</span><span class="day-dot-num">1</span></div></div>
       <div class="day-title">Kick-off</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;">Day 1</div>
       <ul class="day-items">
         <li>Onboarding call — we map your exact lead flow</li>
         <li>You send us Google Business access and website login</li>
@@ -1401,13 +1475,8 @@
       </ul>
     </div>
     <div class="timeline-item">
-      <div class="day-dot">
-        <div>
-          <div class="day-num" style="font-size: 16px; letter-spacing: 0;">Build</div>
-        </div>
-      </div>
+      <div class="day-dot"><div class="day-dot-label"><span class="day-dot-sub">Day</span><span class="day-dot-num">3–14</span></div></div>
       <div class="day-title">Build</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;">Days 3–14</div>
       <ul class="day-items">
         <li>Paige's conversion pages built and connected</li>
         <li>Rex, Dana, Eddie, Rita, Travis, and Randy configured</li>
@@ -1417,13 +1486,8 @@
       </ul>
     </div>
     <div class="timeline-item">
-      <div class="day-dot">
-        <div>
-          <div class="day-num" style="font-size: 14px; letter-spacing: 0;">Live</div>
-        </div>
-      </div>
+      <div class="day-dot"><div class="day-dot-label"><span class="day-dot-sub">Day</span><span class="day-dot-num">14–30</span></div></div>
       <div class="day-title">Launch</div>
-      <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;">Day 14–30</div>
       <ul class="day-items">
         <li>Carrier approves your number — texting goes live</li>
         <li>End-to-end tested with real lead scenarios</li>
@@ -1433,8 +1497,9 @@
       </ul>
     </div>
   </div>
-  <div style="margin-top: 40px; padding: 20px 28px; background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent2); max-width: 640px; font-size: 14px; color: var(--soft); line-height: 1.7;">
-    <strong style="color: var(--text); display: block; margin-bottom: 4px;">Why does it take up to 30 days?</strong>
+
+  <div class="timeline-callout">
+    <strong>Why does it take up to 30 days?</strong>
     The FCC requires all businesses to register before sending texts to customers. It's the same process every company goes through — we just make sure it's submitted on Day 1 so there's no delay on our end. Everything else is typically done by Day 14.
   </div>
 </section>
