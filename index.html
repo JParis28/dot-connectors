@@ -4,16 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dot Connectors — Your AI Front Office for Roofing</title>
-
-<!-- OpenGraph -->
-<meta property="og:title" content="Dot Connectors — Your AI Front Office for Roofing" />
-<meta property="og:description" content="We install your Dot Connectors team — 7 AI front office members — in 7 days. Every inbound call, form, and estimate gets a next step, even when you're on a roof." />
-<meta property="og:image" content="https://getdotconnectors.com/DC-hero.png" />
-<meta property="og:url" content="https://getdotconnectors.com" />
-<meta property="og:type" content="website" />
-
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
+<style>
   :root {
     --black: #0c0e0f;
     --dark: #13161a;
@@ -340,7 +332,7 @@
 
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 10px;
     margin-bottom: 32px;
   }
@@ -878,7 +870,205 @@
     letter-spacing: 1px;
   }
 
-  /* Scroll animation */
+
+  /* ─── MOBILE RESPONSIVE ────────────────── */
+  @media (max-width: 768px) {
+
+    /* Hero */
+    .hero {
+      padding: 60px 24px 48px;
+      min-height: auto;
+    }
+
+    .hero-headline {
+      font-size: clamp(44px, 13vw, 72px);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+    }
+
+    .hero-stats {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 48px;
+      width: 100%;
+    }
+
+    .stat-block {
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+      border-right: none;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .stat-num { font-size: 32px; }
+
+    /* Problem */
+    .problem {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 60px 24px;
+    }
+
+    /* Team section */
+    .team-section {
+      padding: 60px 24px;
+    }
+
+    .team-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .team-note {
+      text-align: left;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Detail panel */
+    .detail-panel {
+      padding: 24px 16px;
+    }
+
+    .detail-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .detail-avatar {
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+    }
+
+    /* How it works */
+    .how-section {
+      padding: 60px 24px;
+    }
+
+    .flow-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Timeline */
+    .timeline-section {
+      padding: 60px 24px;
+    }
+
+    .timeline {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .timeline::before { display: none; }
+
+    .timeline-item {
+      padding: 0;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .day-dot {
+      margin: 0 0 16px 0;
+    }
+
+    /* Pipeline */
+    .pipeline-section {
+      padding: 60px 24px;
+    }
+
+    .pipeline-visual {
+      flex-direction: column;
+    }
+
+    .pipe-stage {
+      border-right: 1px solid var(--border);
+      border-bottom: none;
+    }
+
+    .pipe-stage:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pipe-arrow {
+      display: none;
+    }
+
+    /* CTA section */
+    .cta-section {
+      padding: 80px 24px;
+    }
+
+    /* Mid-page CTA */
+    section[style*="padding: 64px"] {
+      padding: 48px 24px !important;
+    }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+      padding: 32px 24px;
+    }
+
+    /* General sections */
+    .how-section,
+    .pipeline-section {
+      padding: 60px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 48px 16px 40px; }
+
+    .hero-headline { font-size: clamp(38px, 14vw, 60px); }
+
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .cta-section { padding: 60px 16px; }
+
+    .problem,
+    .team-section,
+    .how-section,
+    .timeline-section,
+    .pipeline-section {
+      padding: 48px 16px;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-large,
+    .btn-outline {
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-stats {
+      flex-direction: column;
+    }
+
+    .stat-block {
+      width: 100%;
+      border-bottom: 3px solid var(--accent);
+      border-right: none;
+    }
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -908,7 +1098,7 @@
   </h1>
 
   <p class="hero-sub">
-    We install your <strong>Dot Connectors team</strong> — 7 AI front office members — in 7 days. Every inbound call, form, and estimate gets a next step, even when you're on a roof.
+    We install your <strong>Dot Connectors team</strong> — 8 AI front office members — in 30 days. Every inbound call, form, and estimate gets a next step, even when you're on a roof.
   </p>
 
   <div class="hero-cta">
@@ -918,11 +1108,11 @@
 
   <div class="hero-stats">
     <div class="stat-block">
-      <div class="stat-num">7</div>
+      <div class="stat-num">8</div>
       <div class="stat-label">DC Team Members</div>
     </div>
     <div class="stat-block">
-      <div class="stat-num">7</div>
+      <div class="stat-num">30</div>
       <div class="stat-label">Days to Install</div>
     </div>
     <div class="stat-block">
@@ -971,7 +1161,7 @@
   <div class="team-header reveal">
     <div class="team-intro">
       <div class="section-eyebrow">Your Dot Connectors Team</div>
-      <h2 class="section-headline">7 Teammates. Every Dot. Connected.</h2>
+      <h2 class="section-headline">8 Teammates. Every Dot. Connected.</h2>
     </div>
     <div class="team-note">
       Click any team member<br>to see what they do for you.<br><span style="color: var(--accent); letter-spacing: 0px; font-family: 'DM Sans', sans-serif; font-size: 11px; font-style: italic;">Your DC Team, assembled.</span>
@@ -1184,11 +1374,11 @@
   </div>
 </section>
 
-<!-- ─── 7 DAY TIMELINE ───────────────────── -->
+<!-- ─── 30 DAY TIMELINE ───────────────────── -->
 <section class="timeline-section">
   <div class="reveal">
     <div class="section-eyebrow">The Install</div>
-    <h2 class="section-headline">Live in 7 Days. Done-For-You.</h2>
+    <h2 class="section-headline">Live in 30 Days. Done-For-You.</h2>
   </div>
 
   <div class="timeline reveal">
@@ -1225,7 +1415,7 @@
     <div class="timeline-item">
       <div class="day-dot">
         <div>
-          <div class="day-num">7</div>
+          <div class="day-num">30</div>
           <div class="day-label">Day</div>
         </div>
       </div>
@@ -1233,7 +1423,7 @@
       <ul class="day-items">
         <li>Full end-to-end tested</li>
         <li>Pipeline and reporting confirmed</li>
-        <li>All 7 team members live</li>
+        <li>All 8 team members live</li>
         <li>You're handed the keys</li>
       </ul>
     </div>
@@ -1245,7 +1435,7 @@
   <div class="cta-bg"></div>
   <div class="reveal">
     <h2 class="cta-headline">Ready to Stop<br><span>Losing Leads?</span></h2>
-    <p class="cta-sub">Book a free 30-minute fit call. We'll identify your biggest lead leak and confirm whether a 7-day install makes sense for your business.</p>
+    <p class="cta-sub">Book a free 30-minute fit call. We'll identify your biggest lead leak and confirm whether a 30-day install makes sense for your business.</p>
     <div class="cta-buttons">
       <a href="https://start.getdotconnectors.com/calendar" class="btn-large" style="text-decoration:none; display:inline-block;">Book a Free Fit Call</a>
       <a href="https://www.getdotconnectors.com/#how" class="btn-outline" style="text-decoration:none; display:inline-block;">How It Works ↑</a>
@@ -1372,7 +1562,7 @@ const teamData = {
       { label: 'Weekly report delivered', value: 'Monday 8am' },
       { label: 'Stuck lead alert', value: 'Under 30 min' },
       { label: 'Core metrics accuracy', value: '100%' },
-      { label: 'Reporting setup', value: 'Day 7' },
+      { label: 'Reporting setup', value: 'Day 30' },
     ]
   },
   randy: {
