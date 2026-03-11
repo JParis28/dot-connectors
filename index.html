@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dot Connectors: AI Front Office for Roofing">
+<meta property="og:description" content="We install 3 core AI systems in your roofing business — active in 14 days. Every missed call, web form, and estimate gets a next step, even when you're on a roof.">
+<meta property="og:image" content="DC-hero.png">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dot Connectors: AI Front Office for Roofing">
+<meta name="twitter:description" content="We install 3 core AI systems in your roofing business — active in 14 days. Every missed call, web form, and estimate gets a next step, even when you're on a roof.">
+<meta name="twitter:image" content="DC-hero.png">
+<title>Dot Connectors — Your AI Front Office for Roofing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0c0e0f;
+    --dark: #13161a;
+    --card: #181c21;
+    --card2: #1d2128;
+    --border: #272c35;
+    --accent: #f0c040;
+    --accent2: #e05c2a;
+    --text: #eaeaea;
+    --muted: #a0aab8;
+    --soft: #c8d0db;
+    --sys1: #f0c040;
+    --sys2: #e05c2a;
+    --sys3: #40c878;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── HERO ─────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(240,192,64,0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(224,92,42,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  }
+
+  .logo-bar {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-bar::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 8vw, 108px);
+    line-height: 0.92;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 28px;
+    max-width: 900px;
+  }
+
+  .hero-headline .highlight {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 21px;
+    color: var(--soft);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-sub strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #f5cc55;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--soft);
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-ghost:hover { color: var(--text); }
+
+  .hero-stats {
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px 28px;
+    text-align: right;
+    border-right: 3px solid var(--accent);
+    transition: all 0.2s;
+  }
+
+  .stat-block:hover {
+    border-right-color: var(--accent2);
+    transform: translateX(-4px);
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ─── SHARED SECTION STYLES ─────────────── */
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .section-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 54px);
+    letter-spacing: 1px;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .section-headline .accent { color: var(--accent2); }
+
+  .section-body {
+    font-size: 17px;
+    color: var(--soft);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── PROBLEM SECTION ──────────────────── */
+  .problem {
+    padding: 100px 64px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .leak-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .leak-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    transition: all 0.25s;
+  }
+
+  .leak-item:hover {
+    border-color: var(--accent2);
+    transform: translateX(4px);
+  }
+
+  .leak-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .leak-text {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .leak-text strong {
+    display: block;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .leak-text span { color: var(--soft); font-size: 15px; }
+
+  /* ─── WHO IT'S FOR ──────────────────────── */
+  .who-section {
+    padding: 100px 64px;
+    border-bottom: 1px solid var(--border);
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .who-col-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .who-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .who-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 16px;
+    color: var(--soft);
+    line-height: 1.5;
+  }
+
+  .who-check {
+    color: var(--accent);
+    font-size: 12px;
+    margin-top: 4px;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .who-x {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+    flex-shrink: 0;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .who-callout {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    font-size: 14px;
+    color: var(--soft);
+    line-height: 1.7;
+  }
+
+  /* ─── SYSTEMS SECTION ──────────────────── */
+  .systems-section {
+    padding: 100px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .systems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .system-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--sys-color);
+    padding: 36px 28px;
+    transition: all 0.25s;
+  }
+
+  .system-card:hover {
+    border-color: var(--sys-color);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+
+  .sys-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--sys-color);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .sys-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .sys-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: var(--sys-color);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .sys-hook {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sys-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sys-list li {
+    font-size: 14px;
+    color: var(--soft);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .sys-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--sys-color);
+    font-size: 10px;
+    top: 3px;
+  }
+
+  /* ─── INCLUDED SECTION ──────────────────── */
+  .included-section {
+    padding: 100px 64px;
+    border-bottom: 1px solid var(--border);
+    background: var(--dark);
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 48px 0 64px;
+  }
+
+  .included-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+
+  .included-item:hover { border-color: var(--accent); }
+
+  .included-check {
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-weight: 700;
+  }
+
+  .included-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .included-text strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .included-text span { color: var(--soft); font-size: 13px; }
+
+  /* ─── PIPELINE ─────────────────────────── */
+  .pipeline-visual {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .pipe-stage {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-right: none;
+    padding: 24px 20px;
+    position: relative;
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .pipe-stage:last-child { border-right: 1px solid var(--border); }
+
+  .pipe-stage:hover {
+    background: var(--card2);
+    border-top-color: var(--accent);
+  }
+
+  .pipe-stage:hover .pipe-num { color: var(--accent); }
+
+  .pipe-arrow {
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid var(--border);
+    z-index: 2;
+  }
+
+  .pipe-stage:last-child .pipe-arrow { display: none; }
+
+  .pipe-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+
+  .pipe-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .pipe-owner {
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--soft);
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── TIMELINE ─────────────────────────── */
+  .timeline-section {
+    padding: 100px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 0;
+    margin-top: 48px;
+    position: relative;
+    align-items: start;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: calc(16.67% + 42px);
+    right: calc(16.67% + 42px);
+    height: 1px;
+    background: var(--border);
+    z-index: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    padding: 0 32px;
+    position: relative;
+    text-align: center;
+    align-items: start;
+    justify-items: center;
+  }
+
+  .day-dot {
+    width: 80px;
+    height: 80px;
+    background: var(--card);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .day-dot-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .day-dot-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  .day-dot-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  .day-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    align-self: end;
+  }
+
+  .day-items {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+    align-self: start;
+  }
+
+  .day-items li {
+    font-size: 14px;
+    color: var(--soft);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .day-items li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 3px;
+  }
+
+  /* ─── CTA SECTION ──────────────────────── */
+  .cta-section {
+    padding: 120px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(240,192,64,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 6vw, 80px);
+    letter-spacing: 2px;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .cta-headline span { color: var(--accent); }
+
+  .cta-sub {
+    font-size: 18px;
+    color: var(--soft);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-large {
+    background: var(--accent);
+    color: var(--black);
+    padding: 18px 48px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-large:hover {
+    background: #f5cc55;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(240,192,64,0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 18px 48px;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--text);
+    transform: translateY(-2px);
+  }
+
+  .guarantee {
+    margin-top: 32px;
+    font-size: 14px;
+    color: var(--soft);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* ─── FOOTER ───────────────────────────── */
+  footer {
+    padding: 32px 64px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--accent);
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ─── MOBILE RESPONSIVE ────────────────── */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 60px 24px 48px;
+      min-height: auto;
+    }
+
+    .hero-headline { font-size: clamp(44px, 13vw, 72px); }
+
+    .hero-sub { font-size: 17px; }
+
+    .hero-stats {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 48px;
+      width: 100%;
+    }
+
+    .stat-block {
+      flex: 1;
+      min-width: 90px;
+      text-align: center;
+      border-right: none;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .stat-num { font-size: 32px; }
+
+    .problem {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 60px 24px;
+    }
+
+    .who-section {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 24px;
+    }
+
+    .systems-section { padding: 60px 24px; }
+
+    .systems-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .included-section { padding: 60px 24px; }
+
+    .included-grid { grid-template-columns: 1fr; }
+
+    .timeline-section { padding: 60px 24px; }
+
+    .timeline {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .timeline::before { display: none; }
+
+    .timeline-item {
+      padding: 0;
+      align-items: flex-start;
+    }
+
+    .day-dot { margin: 0 0 16px 0; }
+
+    .day-title { text-align: left; }
+
+    .pipeline-visual { flex-direction: column; }
+
+    .pipe-stage {
+      border-right: 1px solid var(--border);
+      border-bottom: none;
+    }
+
+    .pipe-stage:last-child { border-bottom: 1px solid var(--border); }
+
+    .pipe-arrow { display: none; }
+
+    .cta-section { padding: 80px 24px; }
+
+    section[style*="padding: 64px"] { padding: 48px 24px !important; }
+
+    footer {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+      padding: 32px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 48px 16px 40px; }
+
+    .hero-headline { font-size: clamp(38px, 14vw, 60px); }
+
+    .cta-section { padding: 60px 16px; }
+
+    .problem,
+    .who-section,
+    .systems-section,
+    .included-section,
+    .timeline-section {
+      padding: 48px 16px;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-large,
+    .btn-outline {
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-stats { flex-direction: column; }
+
+    .stat-block {
+      width: 100%;
+      border-bottom: 3px solid var(--accent);
+      border-right: none;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="logo-bar">Dot Connectors</div>
+
+  <div class="hero-eyebrow">For Roofing Companies in St. Petersburg &amp; Tampa Bay</div>
+
+  <h1 class="hero-headline">
+    Stop Losing Leads
+    <span class="highlight">When You Miss Calls.</span>
+  </h1>
+
+  <p class="hero-sub">
+    We install a <strong>done-for-you AI front office</strong> — 3 core systems, active in 14 days. Every missed call, web form, and estimate gets a next step, even when you're on a roof.
+  </p>
+
+  <div class="hero-cta">
+    <a href="https://start.getdotconnectors.com/calendar" class="btn-primary">Book a Free Fit Call</a>
+    <a href="#systems" class="btn-ghost">See what we install ↓</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-block">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Core Systems</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Days to Install</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Leads Left Behind</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROBLEM ──────────────────────────── -->
+<section class="problem reveal">
+  <div>
+    <div class="section-eyebrow">The Problem</div>
+    <h2 class="section-headline">You Don't Have a <span class="accent">Lead Problem.</span> You Have a Leak Problem.</h2>
+    <p class="section-body">Roofing leads leak in three places — and most owners don't realize how much money is walking out the door every single week.</p>
+  </div>
+  <div>
+    <ul class="leak-list">
+      <li class="leak-item">
+        <div class="leak-icon">📞</div>
+        <div class="leak-text">
+          <strong>Missed calls go to voicemail</strong>
+          <span>Homeowner calls one more roofer. That roofer answers. You lose the job before you even knew about it.</span>
+        </div>
+      </li>
+      <li class="leak-item">
+        <div class="leak-icon">📋</div>
+        <div class="leak-text">
+          <strong>Web forms sit too long</strong>
+          <span>A lead fills out your form at 9pm. You see it at 8am. They booked someone else at 9:15pm.</span>
+        </div>
+      </li>
+      <li class="leak-item">
+        <div class="leak-icon">📄</div>
+        <div class="leak-text">
+          <strong>Estimates go out and nobody follows up</strong>
+          <span>You sent a $12,000 quote three weeks ago. You meant to call. The competitor who did is doing the job right now.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── WHO IT'S FOR ─────────────────────── -->
+<section class="who-section">
+  <div class="reveal">
+    <div class="section-eyebrow">This Is For You If</div>
+    <h2 class="section-headline">Not Every Roofer<br>Is the Right Fit.</h2>
+    <p class="section-body" style="margin-top: 12px;">This system is built for roofing companies with a lead flow worth protecting — not businesses just getting started.</p>
+    <ul class="who-list" style="margin-top: 32px;">
+      <li class="who-item">
+        <span class="who-check">✓</span>
+        You have an existing crew and steady inbound volume
+      </li>
+      <li class="who-item">
+        <span class="who-check">✓</span>
+        You have some office coverage, but leads still slip through the cracks
+      </li>
+      <li class="who-item">
+        <span class="who-check">✓</span>
+        Storm season or day-to-day jobs create consistent missed calls
+      </li>
+      <li class="who-item">
+        <span class="who-check">✓</span>
+        You want clean tracking without turning your business into a software project
+      </li>
+      <li class="who-item">
+        <span class="who-check">✓</span>
+        You're spending on marketing and tired of watching leads evaporate after the first touch
+      </li>
+    </ul>
+  </div>
+  <div class="reveal">
+    <div class="who-col-title">This is not the right fit if</div>
+    <ul class="who-list">
+      <li class="who-item">
+        <span class="who-x">✗</span>
+        You don't have consistent inbound yet — this captures leads, it doesn't generate them
+      </li>
+      <li class="who-item">
+        <span class="who-x">✗</span>
+        You're looking for a marketing agency or lead generation service
+      </li>
+      <li class="who-item">
+        <span class="who-x">✗</span>
+        You want someone managing your business long-term — we install, test, and hand off
+      </li>
+    </ul>
+    <div class="who-callout">
+      If you're the right fit, we'll identify your biggest lead leak on the call and have all 3 systems live inside 14 days.
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT WE INSTALL ───────────────────── -->
+<section class="systems-section" id="systems">
+  <div class="reveal">
+    <div class="section-eyebrow">What We Install</div>
+    <h2 class="section-headline">Three Core Systems.<br>Wired Together. Live in 14 Days.</h2>
+    <p class="section-body" style="max-width: 560px; margin-top: 12px;">Each system targets one of the three places roofing leads leak. Built in GoHighLevel. Handed off to you fully operational on Day 14.</p>
+  </div>
+
+  <div class="systems-grid">
+    <div class="system-card reveal" style="--sys-color: var(--sys1)">
+      <div class="sys-number">SYSTEM 01</div>
+      <span class="sys-icon">📞</span>
+      <div class="sys-name">Missed Call Call-Back</div>
+      <p class="sys-hook">Every missed call gets an automatic callback within 60 seconds — before they dial your competitor.</p>
+      <ul class="sys-list">
+        <li>Calls the lead back within 60 seconds of a missed call</li>
+        <li>Qualifies the lead and routes them into your pipeline automatically</li>
+        <li>Logs the contact and conversation in your GHL CRM</li>
+        <li>Sends a follow-up text if the callback isn't answered</li>
+      </ul>
+    </div>
+
+    <div class="system-card reveal" style="--sys-color: var(--sys2)">
+      <div class="sys-number">SYSTEM 02</div>
+      <span class="sys-icon">🌙</span>
+      <div class="sys-name">After-Hours Agent</div>
+      <p class="sys-hook">An AI agent handles inbound calls and texts after hours — qualifying leads and booking jobs while you sleep.</p>
+      <ul class="sys-list">
+        <li>Responds to after-hours calls and texts automatically</li>
+        <li>Collects name, address, job type, and urgency level</li>
+        <li>Books them on your calendar for the next available slot</li>
+        <li>Notifies your team the moment the business day starts</li>
+      </ul>
+    </div>
+
+    <div class="system-card reveal" style="--sys-color: var(--sys3)">
+      <div class="sys-number">SYSTEM 03</div>
+      <span class="sys-icon">📋</span>
+      <div class="sys-name">Post-Inspection Follow-Up</div>
+      <p class="sys-hook">Automates the gap between inspection and signed contract — so no estimate goes cold.</p>
+      <ul class="sys-list">
+        <li>Sends estimate confirmation immediately after inspection</li>
+        <li>Runs automated SMS + email reminder sequence if no response</li>
+        <li>Triggers a no-show recovery flow for missed inspections</li>
+        <li>No quote disappears without a documented follow-up attempt</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MID-PAGE CTA ──────────────────────── -->
+<section style="padding: 64px; text-align: center; border-bottom: 1px solid var(--border); background: var(--dark);">
+  <p style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 2px; color: var(--soft); text-transform: uppercase; margin-bottom: 16px;">Ready to plug the leaks?</p>
+  <a href="https://start.getdotconnectors.com/calendar" class="btn-large" style="text-decoration: none; display: inline-block;">Book a Free Fit Call</a>
+  <p style="margin-top: 16px; font-size: 14px; color: var(--soft); font-family: 'DM Mono', monospace; letter-spacing: 0.5px;">30 minutes. We'll identify your biggest leak and scope the install.</p>
+</section>
+
+<!-- ─── WHAT'S INCLUDED ───────────────────── -->
+<section class="included-section">
+  <div class="reveal">
+    <div class="section-eyebrow">What's Included</div>
+    <h2 class="section-headline">Everything You Need.<br>Nothing You Don't.</h2>
+    <p class="section-body" style="max-width: 540px; margin-top: 12px;">Every install includes the full GHL infrastructure to make all three systems run. You own the account. We set up the machine.</p>
+  </div>
+
+  <div class="included-grid reveal">
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>Missed Call Text-Back</strong>
+        <span>Every missed call triggers an immediate text — before the homeowner dials the next roofer.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>After-Hours AI Agent</strong>
+        <span>Handles inbound calls and texts outside business hours. Books appointments and alerts your team in the morning.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>Form-to-Scheduling Automation</strong>
+        <span>Web form submissions routed directly to your calendar — no manual follow-up required.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>Inspection Confirmation + Reminder Flow</strong>
+        <span>Automated text + email confirmation on booking, plus day-before and same-day reminders to eliminate no-shows.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>No-Show Recovery Flow</strong>
+        <span>Triggers automatically if an inspection is missed. Re-engages the lead without a manual touch from you.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>Estimate Follow-Up Sequence</strong>
+        <span>Multi-touch SMS + email follow-up on every estimate sent. No quote goes dark without a documented attempt.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>Clean CRM Pipeline in GoHighLevel</strong>
+        <span>New Lead → Inspection Scheduled → Estimate Sent → Won/Lost. See where every lead stands, always.</span>
+      </div>
+    </div>
+    <div class="included-item">
+      <span class="included-check">✓</span>
+      <div class="included-text">
+        <strong>Full System Walkthrough &amp; Handoff</strong>
+        <span>30-minute call on Day 14. You get full access, a walkthrough of every system, and we're available for 30 days post-launch.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 20px;">Your Pipeline View</div>
+    <div class="pipeline-visual">
+      <div class="pipe-stage">
+        <div class="pipe-arrow"></div>
+        <div class="pipe-num">01</div>
+        <div class="pipe-name">New Lead</div>
+        <div class="pipe-owner">Responded in &lt;60 sec</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-arrow"></div>
+        <div class="pipe-num">02</div>
+        <div class="pipe-name">Inspection Scheduled</div>
+        <div class="pipe-owner">Confirmed + reminders sent</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-arrow"></div>
+        <div class="pipe-num">03</div>
+        <div class="pipe-name">Estimate Sent</div>
+        <div class="pipe-owner">Follow-up sequence active</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-arrow"></div>
+        <div class="pipe-num">04</div>
+        <div class="pipe-name">Approved</div>
+        <div class="pipe-owner">Closed and logged</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-num">05</div>
+        <div class="pipe-name">Won / Lost</div>
+        <div class="pipe-owner">Pipeline always current</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 14-DAY TIMELINE ───────────────────── -->
+<section class="timeline-section">
+  <div class="reveal" style="text-align: center;">
+    <div class="section-eyebrow">The Install</div>
+    <h2 class="section-headline">Live in 14 Days. Done-For-You.</h2>
+    <p style="font-size: 16px; color: var(--soft); max-width: 520px; margin: 16px auto 0; line-height: 1.7; font-weight: 300;">You send us access on Day 1. We build, wire, and test everything. You get a fully operational front office on Day 14.</p>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="day-dot"><div class="day-dot-label"><span class="day-dot-sub">Day</span><span class="day-dot-num">1</span></div></div>
+      <div class="day-title">Map &amp; Access</div>
+      <ul class="day-items">
+        <li>Onboarding call — we map your exact lead flow</li>
+        <li>You send us Google Business and website access</li>
+        <li>GHL account and pipeline scaffolded</li>
+        <li>Phone number provisioned and activated</li>
+        <li>Baseline numbers captured — we know what we're fixing</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="day-dot"><div class="day-dot-label"><span class="day-dot-sub">Day</span><span class="day-dot-num">3–7</span></div></div>
+      <div class="day-title">Build &amp; Connect</div>
+      <ul class="day-items">
+        <li>All 3 core systems built and configured</li>
+        <li>Automations wired and tested internally</li>
+        <li>Form-to-calendar routing verified</li>
+        <li>Missed call and after-hours flows active</li>
+        <li>Pipeline stages and alerts confirmed</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="day-dot"><div class="day-dot-label"><span class="day-dot-sub">Day</span><span class="day-dot-num">7–14</span></div></div>
+      <div class="day-title">Test &amp; Launch</div>
+      <ul class="day-items">
+        <li>End-to-end tested with real lead scenarios</li>
+        <li>All 3 systems live and responding</li>
+        <li>30-min walkthrough — you get the keys</li>
+        <li>Available for support for 30 days post-launch</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ──────────────────────────────── -->
+<section class="cta-section" id="cta">
+  <div class="cta-bg"></div>
+  <div class="reveal">
+    <h2 class="cta-headline">Ready to Stop<br><span>Losing Leads?</span></h2>
+    <p class="cta-sub">Book a free 30-minute fit call. We'll identify your biggest lead leak and confirm whether a 14-day install makes sense for your business.</p>
+    <div class="cta-buttons">
+      <a href="https://start.getdotconnectors.com/calendar" class="btn-large" style="text-decoration:none; display:inline-block;">Book a Free Fit Call</a>
+      <a href="#systems" class="btn-outline" style="text-decoration:none; display:inline-block;">See What We Install ↑</a>
+    </div>
+    <div class="guarantee">No contracts. Fixed scope. Fixed price.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Dot Connectors</div>
+  <div class="footer-text">St. Petersburg, FL — Serving Tampa Bay Roofing Companies</div>
+  <div class="footer-text">System Install. Not Marketing. Not AI Hype.</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
