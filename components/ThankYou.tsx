@@ -66,8 +66,7 @@ export default function ThankYou() {
         </h1>
 
         <p className="thanks__sub" style={r(0.18)}>
-          A confirmation is on its way. We&apos;ll meet on Cal Video for 30
-          minutes. Bring your questions.
+          A confirmation is on its way.
         </p>
 
         {booking && fields && (
@@ -96,9 +95,7 @@ export default function ThankYou() {
         )}
 
         <p className="thanks__closer" style={r(0.55)}>
-          On the call, we&apos;ll show you exactly what we&apos;d build, what
-          it costs, and what it should pay back. If the numbers make sense,
-          we get to work.
+          Talk soon.
         </p>
       </main>
 
