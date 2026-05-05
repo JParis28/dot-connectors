@@ -1709,3 +1709,305 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .bk-card__top { padding: 18px 20px; }
   .bk-card__meta { padding: 12px 20px; }
 }
+/* =====================================================================
+   /thankyou — Spartan booking thank-you page
+   Source: Claude Design/design_handoff_booking_thank_you/
+   ===================================================================== */
+
+.thanks {
+  min-height: 100vh;
+  background: var(--grad-hero);
+  color: #fff;
+  font-family: var(--font-sans);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.thanks__glow {
+  position: absolute;
+  inset: 0;
+  background: var(--grad-glow-1), var(--grad-glow-2);
+  pointer-events: none;
+}
+
+.thanks__nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.thanks__nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.thanks__nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.thanks__nav-back:hover {
+  color: #fff;
+}
+
+.thanks__main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 160px 48px 80px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.thanks__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.thanks__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-accent-light);
+  box-shadow: 0 0 0 4px rgba(126, 200, 227, 0.18);
+}
+
+.thanks__eyebrow-text {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-accent-light);
+}
+
+.thanks__headline {
+  font-size: clamp(48px, 6.8vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  margin: 0;
+  max-width: 920px;
+  color: #fff;
+}
+
+.thanks__accent {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.thanks__sub {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 32px 0 0;
+  max-width: 540px;
+}
+
+.thanks__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 64px 0 40px;
+  max-width: 760px;
+}
+
+.thanks__fields {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 0 56px;
+  max-width: 760px;
+  align-items: baseline;
+}
+
+.thanks__field-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  margin-bottom: 8px;
+}
+
+.thanks__field-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.thanks__cal {
+  margin-top: 56px;
+}
+
+.thanks__cal-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 16px;
+}
+
+.thanks__cal-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.thanks__cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), filter 0.25s var(--ease),
+    background 0.25s var(--ease);
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+}
+
+.thanks__cal-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.thanks__cal-glyph-apple {
+  display: inline-flex;
+  color: #fff;
+}
+
+.thanks__cal-ics {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+  font-family: inherit;
+}
+
+.thanks__cal-ics:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.thanks__closer {
+  margin-top: 80px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.38);
+  letter-spacing: -0.005em;
+  font-style: italic;
+  max-width: 540px;
+}
+
+.thanks__footer {
+  position: relative;
+  padding: 32px 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+  z-index: 1;
+}
+
+.thanks__footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.thanks__footer-built {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.thanks__footer-links {
+  display: flex;
+  gap: 6px;
+}
+
+.thanks__footer-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.thanks__footer-links a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 900px) {
+  .thanks__nav {
+    padding: 0 24px;
+  }
+  .thanks__main {
+    padding: 120px 24px 64px;
+  }
+  .thanks__headline {
+    font-size: clamp(40px, 9vw, 64px);
+  }
+  .thanks__fields {
+    grid-template-columns: auto auto;
+    gap: 24px 32px;
+  }
+  .thanks__footer {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .thanks__fields {
+    grid-template-columns: 1fr;
+  }
+  .thanks__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
