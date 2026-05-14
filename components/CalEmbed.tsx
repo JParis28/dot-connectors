@@ -38,6 +38,19 @@ export function CalEmbed() {
       hideEventTypeDetails: false,
       layout: "month_view",
     });
+    let bookingFired = false;
+    const fireBookingConversion = () => {
+      if (bookingFired) return;
+      bookingFired = true;
+      if (typeof window.fbq === "function") window.fbq("track", "Schedule");
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "generate_lead", { value: 1997, currency: "USD" });
+      }
+    };
+    // @ts-expect-error: Cal namespace API
+    window.Cal.ns[NAMESPACE]("on", { action: "bookingSuccessful", callback: fireBookingConversion });
+    // @ts-expect-error: Cal namespace API
+    window.Cal.ns[NAMESPACE]("on", { action: "bookingSuccessfulV2", callback: fireBookingConversion });
     /* eslint-enable */
 
     let revealTimer: ReturnType<typeof setTimeout> | null = null;

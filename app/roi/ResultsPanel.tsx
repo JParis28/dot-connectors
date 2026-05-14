@@ -6,6 +6,7 @@ import { money, count } from "@/lib/roi/format";
 import { Reveal } from "@/components/Reveal";
 import { PillarCard } from "./PillarCard";
 import { TickingValue } from "./Ticking";
+import { trackEvent } from "@/lib/analytics";
 
 function CohortRow() {
   return (
@@ -135,6 +136,8 @@ function AsideRow({ inputs }: { inputs: Inputs }) {
         return;
       }
       setStatus("sent");
+      trackEvent("email_capture_submit");
+      trackEvent("Lead", { content_name: "ROI report" });
     } catch {
       setStatus("error");
       setErrorMsg("Network hiccup. Try again.");

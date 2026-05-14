@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import type { Inputs, ModeId } from "@/lib/roi/calc";
 import { TRADES, MODES } from "@/lib/roi/calc";
 import { Icon } from "@/components/Icon";
+import { trackEvent } from "@/lib/analytics";
 
 type FieldProps = {
   label: string;
@@ -97,6 +98,20 @@ type Props = {
 
 export function InputsPanel({ inputs, onInput, onMode }: Props) {
   const trade = TRADES[inputs.trade];
+  const hasEngaged = useRef(false);
+  const markEngaged = () => {
+    if (hasEngaged.current) return;
+    hasEngaged.current = true;
+    trackEvent("engage_calculator");
+  };
+  const handleInput = <K extends keyof Inputs>(key: K, value: Inputs[K]) => {
+    markEngaged();
+    onInput(key, value);
+  };
+  const handleMode = (id: ModeId) => {
+    markEngaged();
+    onMode(id);
+  };
 
   return (
     <aside className="rc-inputs">
@@ -115,7 +130,7 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
               role="tab"
               aria-selected={inputs.mode === id}
               className={`rc-mode-toggle__btn ${inputs.mode === id ? "rc-mode-toggle__btn--active" : ""}`}
-              onClick={() => onMode(id)}
+              onClick={() => handleMode(id)}
             >
               {MODES[id].label}
             </button>
@@ -128,14 +143,14 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
           label="Inbound calls"
           help="How many calls hit your phone in a typical month. Annual = monthly × 12."
           value={inputs.monthlyLeads}
-          onChange={(v) => onInput("monthlyLeads", v)}
+          onChange={(v) => handleInput("monthlyLeads", v)}
         />
         <Field
           label="Booking rate"
           help="Of the calls that reach you, what % turn into booked jobs today?"
           suffix="%"
           value={Math.round(inputs.bookingRate * 1000) / 10}
-          onChange={(v) => onInput("bookingRate", v / 100)}
+          onChange={(v) => handleInput("bookingRate", v / 100)}
         />
       </InputGroup>
 
@@ -144,13 +159,13 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
           label={trade.smallLabel}
           prefix="$"
           value={inputs.smallTicket}
-          onChange={(v) => onInput("smallTicket", v)}
+          onChange={(v) => handleInput("smallTicket", v)}
         />
         <Field
           label={trade.bigLabel}
           prefix="$"
           value={inputs.bigTicket}
-          onChange={(v) => onInput("bigTicket", v)}
+          onChange={(v) => handleInput("bigTicket", v)}
         />
         <Field
           full
@@ -158,7 +173,7 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
           help={`Of all your jobs, what % are ${trade.bigLabel.toLowerCase().replace(/^avg /, "")}s (vs. ${trade.smallLabel.toLowerCase().replace(/^avg /, "")}s)?`}
           suffix="%"
           value={Math.round(inputs.bigTicketMix * 1000) / 10}
-          onChange={(v) => onInput("bigTicketMix", v / 100)}
+          onChange={(v) => handleInput("bigTicketMix", v / 100)}
         />
       </InputGroup>
 
@@ -169,13 +184,13 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
             help="Roughly what share of your existing customers are enrolled in a plan today. We subtract them from your Wake the Dead pool, since they're already engaged, not dormant."
             suffix="%"
             value={Math.round(inputs.planMembersPct * 1000) / 10}
-            onChange={(v) => onInput("planMembersPct", v / 100)}
+            onChange={(v) => handleInput("planMembersPct", v / 100)}
           />
           <Field
             label="Plan fee (annual)"
             prefix="$"
             value={inputs.planFeeAnnual}
-            onChange={(v) => onInput("planFeeAnnual", v)}
+            onChange={(v) => handleInput("planFeeAnnual", v)}
           />
         </InputGroup>
       ) : null}
@@ -186,7 +201,7 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
           label="Past customers served"
           help="Total unique customers in your CRM / database. Ballpark is fine."
           value={inputs.pastCustomers}
-          onChange={(v) => onInput("pastCustomers", v)}
+          onChange={(v) => handleInput("pastCustomers", v)}
         />
       </InputGroup>
     </aside>
