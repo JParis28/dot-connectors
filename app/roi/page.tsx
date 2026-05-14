@@ -5,7 +5,7 @@ import { RoiPage } from "./RoiPage";
 
 const TITLE = "Recoverable Revenue Calculator · Connectors";
 const DESCRIPTION =
-  "Three real numbers your front office never gets the chance to catch. Drop in your trade and a few honest figures. We'll show you, line by line, the revenue your team can't catch alone, and the gross profit underneath it.";
+  "The revenue your front office never gets the chance to catch. Drop in your trade and a few figures. We'll show you, line by line, the revenue your team can't catch alone, and the gross profit underneath it.";
 
 export const metadata: Metadata = {
   title: TITLE,
