@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "The Phone Always Gets Answered",
   description:
-    "An AI front office for home-services contractors. Picks up by the second ring, books the job, texts the customer back. 24/7.",
+    "An AI front office for HVAC contractors. 95% of your calls answered in 8 seconds. Books the job, texts the customer back. 24/7. Or your money back.",
   openGraph: {
     title: "The Phone Always Gets Answered",
     description:
-      "An AI front office for home-services contractors. Picks up by the second ring, books the job, texts the customer back. 24/7.",
+      "An AI front office for HVAC contractors. 95% of your calls answered in 8 seconds. Books the job, texts the customer back. 24/7. Or your money back.",
     siteName: "Connectors",
     type: "website",
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Phone Always Gets Answered",
     description:
-      "An AI front office for home-services contractors. Picks up by the second ring, books the job, texts the customer back. 24/7.",
+      "An AI front office for HVAC contractors. 95% of your calls answered in 8 seconds. Books the job, texts the customer back. 24/7. Or your money back.",
   },
   icons: {
     icon: [

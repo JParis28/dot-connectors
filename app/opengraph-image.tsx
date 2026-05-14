@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Connectors — AI front office for home-services contractors";
+export const alt = "Connectors. The AI front office for HVAC contractors.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -65,13 +65,13 @@ export default async function OGImage() {
             color: "#7EC8E3",
           }}
         >
-          AI Front Office · Home Services
+          AI Front Office · HVAC
         </div>
 
         <div
           style={{
             marginTop: 22,
-            fontSize: 96,
+            fontSize: 92,
             fontWeight: 800,
             letterSpacing: "-0.035em",
             lineHeight: 0.98,
@@ -79,7 +79,7 @@ export default async function OGImage() {
             flexDirection: "column",
           }}
         >
-          <span>The phone always</span>
+          <span>95% of your HVAC calls,</span>
           <span
             style={{
               backgroundImage: "linear-gradient(135deg, #4BA3D4 0%, #7EC8E3 100%)",
@@ -87,7 +87,7 @@ export default async function OGImage() {
               color: "transparent",
             }}
           >
-            gets answered.
+            answered in 8 seconds.
           </span>
         </div>
 
@@ -100,7 +100,7 @@ export default async function OGImage() {
             maxWidth: 880,
           }}
         >
-          Picks up by the second ring. Books the job. Never misses a lead. 24/7.
+          Or your money back. Founding Cohort price locked for 5 years. First 25 customers.
         </div>
       </div>
     ),

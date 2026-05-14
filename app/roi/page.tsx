@@ -19,7 +19,7 @@ const jsonLd = {
   "@type": "SoftwareApplication",
   name: "Connectors Recoverable Revenue Calculator",
   description:
-    "Free interactive ROI calculator for HVAC, roofing, and home-services contractors. Quantifies added revenue (and the real added profit underneath) from missed calls, slow lead response, plan attach, and past-customer reactivation.",
+    "Free interactive ROI calculator for HVAC contractors. Quantifies added revenue (and the real added profit underneath) from missed calls, slow lead response, plan attach, and past-customer reactivation.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
