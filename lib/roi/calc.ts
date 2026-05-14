@@ -132,7 +132,7 @@ export const TRADES: Record<TradeId, TradeConfig> = {
   hvac: {
     label: "HVAC",
     monthlyLeads: 400,
-    bookingRate: 0.38,
+    bookingRate: 0.46,
     smallTicket: 450,
     bigTicket: 9500,
     bigTicketMix: 0.08,
