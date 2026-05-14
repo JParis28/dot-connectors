@@ -80,7 +80,7 @@ export function Hero() {
             <span className="accent">in 8 seconds, or your money back.</span>
           </h1>
           <p className="hero__sub">
-            500 calls a month. Half go to voicemail. We pick up the half you&apos;re losing.
+            In a typical HVAC shop, 1 in 5 calls hits voicemail. Each one is a job going to the next contractor. We pick up every one.
           </p>
           <div className="hero__ctas">
             <a href="/start" className="btn btn--primary btn--lg">

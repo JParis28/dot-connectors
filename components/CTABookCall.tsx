@@ -14,7 +14,7 @@ export function CTABookCall() {
         </Reveal>
         <Reveal delay={120}>
           <p className="cta__sub">
-            A call with Nicholas. We&apos;ll show you exactly how the AI front office works for your shop.
+            A call with one of the founders. We&apos;ll show you exactly how the AI front office works for your shop.
           </p>
         </Reveal>
         <Reveal delay={240}>

@@ -109,6 +109,7 @@ function CompoundStrip({ result }: { result: CalcResult }) {
 type Status = "idle" | "sending" | "sent" | "error";
 
 function AsideRow({ inputs }: { inputs: Inputs }) {
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -125,7 +126,7 @@ function AsideRow({ inputs }: { inputs: Inputs }) {
       const res = await fetch("/api/email-roi", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), businessName: "", inputs }),
+        body: JSON.stringify({ email: email.trim(), businessName: firstName.trim(), inputs }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) {
@@ -145,11 +146,22 @@ function AsideRow({ inputs }: { inputs: Inputs }) {
       <form className="rc-email-form" onSubmit={submit} aria-busy={status === "sending"}>
         <input
           className="rc-email-form__input"
+          type="text"
+          placeholder="First name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          disabled={status === "sending" || status === "sent"}
+          autoComplete="given-name"
+        />
+        <span className="rc-email-form__divider" />
+        <input
+          className="rc-email-form__input"
           type="email"
           placeholder="you@business.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={status === "sending" || status === "sent"}
+          autoComplete="email"
           required
         />
         <button
