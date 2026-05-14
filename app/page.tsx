@@ -4,6 +4,7 @@ import { Proof } from "@/components/Proof";
 import { Demo } from "@/components/Demo";
 import { CTABookCall } from "@/components/CTABookCall";
 import { Footer } from "@/components/Footer";
+import { RoiPage } from "./roi/RoiPage";
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
       <Proof />
       <Demo />
       <CTABookCall />
+      <RoiPage embedded />
       <Footer />
     </div>
   );

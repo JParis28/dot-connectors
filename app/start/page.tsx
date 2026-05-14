@@ -39,7 +39,7 @@ export default function StartPage() {
               Every Lead. Answered. Booked.
             </div>
             <h1 className="bk-pitch__headline">
-              Pick a time. <span className="accent">Get your front office back.</span>
+              Pick a time. <span className="accent">Stop handing jobs to the next guy.</span>
             </h1>
             <div className="bk-host">
               <div className="bk-host__row">
@@ -62,7 +62,7 @@ export default function StartPage() {
                 </div>
               </div>
               <p className="bk-host__quote">
-                &ldquo;Worst case, you leave with a plan you can run yourself. Best case, we run it for you. Either way, I&rsquo;ll tell you straight.&rdquo;
+                &ldquo;We&rsquo;ll pull up your missed-call log and price what each one&rsquo;s worth. After that, you&rsquo;ll know whether to hire us, or just fix it yourself.&rdquo;
               </p>
             </div>
           </div>
@@ -83,6 +83,9 @@ export default function StartPage() {
               <span><Icon name="globe" size={14} />America/New_York</span>
             </div>
             <CalEmbed />
+            <p className="bk-card__disclosure">
+              Before you complete this booking, you&rsquo;ll be asked to consent to receive autodialed and prerecorded calls and text messages from Connectors AI LLC at the number you provide: confirmations, reminders, and follow-ups about your strategy call. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply HELP for help, STOP to opt out at any time. See our <a href="/privacy-policy">Privacy Policy</a> and <a href="/terms-of-use">Terms of Use</a>.
+            </p>
           </div>
         </div>
       </section>

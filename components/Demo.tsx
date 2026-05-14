@@ -73,9 +73,7 @@ export function Demo() {
     if (!node) return;
     const obs = new IntersectionObserver(
       ([e]) => {
-        if (!e.isIntersecting) {
-          setPlaying((prev) => (prev ? false : prev));
-        }
+        setPlaying(e.isIntersecting);
       },
       { threshold: 0 }
     );

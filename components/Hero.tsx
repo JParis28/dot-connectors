@@ -22,9 +22,11 @@ const SCRIPT: Step[] = [
   { at: 11200, action: "show", key: "typing-5" },
   { at: 12200, action: "hide", key: "typing-5" },
   { at: 12200, action: "show", key: "bubble-5" },
-  { at: 16500, action: "reset" },
+  { at: 13400, action: "show", key: "booked-chip" },
+  { at: 19400, action: "reset" },
 ];
-const LOOP_MS = 17000;
+const LOOP_MS = 19500;
+const FADE_START = 18400;
 
 const fmtTimer = (s: number) => {
   const m = Math.floor(s / 60);
@@ -40,6 +42,7 @@ function setsEqual(a: Set<string>, b: Set<string>) {
 export function Hero() {
   const [active, setActive] = useState<Set<string>>(new Set());
   const [callTimer, setCallTimer] = useState(38);
+  const [isFading, setIsFading] = useState(false);
   const startRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -55,6 +58,8 @@ export function Hero() {
         else next.delete(step.key);
       }
       setActive((prev) => (setsEqual(prev, next) ? prev : next));
+      const fading = t >= FADE_START;
+      setIsFading((prev) => (prev === fading ? prev : fading));
       const seconds = 38 + Math.floor((t - 1400) / 1000);
       setCallTimer(t > 1400 ? Math.max(38, Math.min(seconds, 95)) : 38);
       raf = requestAnimationFrame(tick);
@@ -68,15 +73,14 @@ export function Hero() {
       <div className="hero__inner">
         <div>
           <div className="hero__eyebrow">
-            <span className="dot" />
-            <span>Live · St. Petersburg, FL</span>
+            <span>Built in St. Petersburg, FL</span>
           </div>
           <h1>
             <span>The phone always</span>
             <span className="accent">gets answered.</span>
           </h1>
           <p className="hero__sub">
-            Even when you&apos;re <em>on a roof</em>. The first roofer to call back wins almost every job. Now that&apos;s always you.
+            Even when you&apos;re <em>on the job</em>. The first to call back wins. Now that&apos;s always you.
           </p>
           <div className="hero__ctas">
             <a href="/start" className="btn btn--primary btn--lg">
@@ -88,7 +92,7 @@ export function Hero() {
         </div>
 
         <div className="hero__visual" aria-hidden="true">
-          <div className="phone-wrap">
+          <div className={`phone-wrap${isFading ? " is-fading-out" : ""}`}>
             <div className="phone">
               <div className="phone__notch" />
               <div className="phone__screen">
@@ -185,13 +189,15 @@ export function Hero() {
                 <div className="hero__chip-value">8 seconds</div>
               </div>
             </div>
-            <div className="hero__chip hero__chip--bottom">
-              <div className="hero__chip-icon"><Icon name="calendar" size={18} /></div>
-              <div className="hero__chip-text">
-                <div className="hero__chip-label">Booked</div>
-                <div className="hero__chip-value">Wed · 9:00 AM</div>
+            {active.has("booked-chip") && (
+              <div className="hero__chip hero__chip--bottom">
+                <div className="hero__chip-icon"><Icon name="calendar" size={18} /></div>
+                <div className="hero__chip-text">
+                  <div className="hero__chip-label">Booked</div>
+                  <div className="hero__chip-value">Wed · 9:00 AM</div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

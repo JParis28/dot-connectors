@@ -6,9 +6,10 @@ import { Icon } from "./Icon";
 
 type NavProps = {
   back?: boolean;
+  light?: boolean;
 };
 
-export function Nav({ back = false }: NavProps) {
+export function Nav({ back = false, light = false }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -18,7 +19,7 @@ export function Nav({ back = false }: NavProps) {
   }, []);
 
   return (
-    <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
+    <nav className={`nav ${scrolled ? "nav--scrolled" : ""} ${light ? "nav--light" : ""}`}>
       <div className="nav__inner">
         <a href={back ? "/" : "#top"} className="nav__logo">
           <BrandMark />
