@@ -189,8 +189,11 @@ function AsideRow({ inputs }: { inputs: Inputs }) {
 
 function Methodology() {
   return (
-    <div className="rc-method">
-      <p className="rc-method__label">How we calculate</p>
+    <details className="rc-method">
+      <summary className="rc-method__summary">
+        <span className="rc-method__label">How we calculate these numbers</span>
+        <span className="rc-method__chev" aria-hidden="true">›</span>
+      </summary>
       <div className="rc-method__body">
         <p>
           Headline numbers are <strong>added revenue</strong>. Underneath each one we show
@@ -257,7 +260,7 @@ function Methodology() {
           load. Aggressive is best-in-class with strong process. Nothing is hidden in a black box.
         </p>
       </div>
-    </div>
+    </details>
   );
 }
 
@@ -296,8 +299,8 @@ export function ResultsPanel({
       <Reveal>
         <CompoundStrip result={result} />
       </Reveal>
-      <AsideRow inputs={inputs} />
       <Methodology />
+      <AsideRow inputs={inputs} />
     </div>
   );
 }

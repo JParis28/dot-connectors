@@ -2,7 +2,7 @@ import { Reveal } from "./Reveal";
 
 export function Proof() {
   return (
-    <section className="proof section--dark">
+    <section className="proof">
       <div className="section__inner">
         <Reveal>
           <span className="proof__big">7&times;</span>
