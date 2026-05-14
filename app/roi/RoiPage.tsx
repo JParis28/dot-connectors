@@ -45,7 +45,7 @@ function PageHeader({ result, embedded }: { result: CalcResult; embedded?: boole
       </HeadingTag>
       <p className="rc-header__sub">
         Drop in your trade and a few figures. We&rsquo;ll show you, line by line, the revenue
-        your team can&rsquo;t catch alone, and the gross profit underneath it.
+        your team can&rsquo;t catch alone, and the added profit underneath it.
       </p>
       <div className="rc-header__meta">
         <span>

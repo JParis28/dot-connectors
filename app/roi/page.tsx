@@ -5,7 +5,7 @@ import { RoiPage } from "./RoiPage";
 
 const TITLE = "Recoverable Revenue Calculator · Connectors";
 const DESCRIPTION =
-  "The revenue your front office never gets the chance to catch. Drop in your trade and a few figures. We'll show you, line by line, the revenue your team can't catch alone, and the gross profit underneath it.";
+  "The revenue your front office never gets the chance to catch. Drop in your trade and a few figures. We'll show you, line by line, the revenue your team can't catch alone, and the added profit underneath it.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -19,7 +19,7 @@ const jsonLd = {
   "@type": "SoftwareApplication",
   name: "Connectors Recoverable Revenue Calculator",
   description:
-    "Free interactive ROI calculator for HVAC, roofing, and home-services contractors. Quantifies recoverable revenue (and underlying gross profit) from missed calls, slow lead response, plan attach, and past-customer reactivation.",
+    "Free interactive ROI calculator for HVAC, roofing, and home-services contractors. Quantifies added revenue (and the real added profit underneath) from missed calls, slow lead response, plan attach, and past-customer reactivation.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

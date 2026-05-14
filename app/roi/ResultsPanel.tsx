@@ -12,36 +12,36 @@ function KpiStrip({ result }: { result: CalcResult }) {
   return (
     <div className="rc-kpis">
       <div className="rc-kpi">
-        <p className="rc-kpi__eyebrow">Year 1 Total</p>
+        <p className="rc-kpi__eyebrow">Year 1 added revenue</p>
         <div className="rc-kpi__value tnum">
           <TickingValue value={money(result.year1)} />
         </div>
         <p className="rc-kpi__profit tnum">
-          ≈ <TickingValue value={money(result.year1Profit)} /> gross profit
+          ≈ <TickingValue value={money(result.year1Profit)} /> added profit
         </p>
         <p className="rc-kpi__caption">Bigger because you only wake the dead once.</p>
       </div>
       <div className="rc-kpi">
-        <p className="rc-kpi__eyebrow">Ongoing Annual</p>
+        <p className="rc-kpi__eyebrow">Annual added revenue</p>
         <div className="rc-kpi__value tnum">
           <TickingValue value={money(result.steadyAnnual)} />
         </div>
         <p className="rc-kpi__profit tnum">
-          ≈ <TickingValue value={money(result.steadyAnnualProfit)} /> gross profit
+          ≈ <TickingValue value={money(result.steadyAnnualProfit)} /> added profit
         </p>
         <p className="rc-kpi__caption">What Year 2 and Year 3 look like, on average.</p>
       </div>
       <div className="rc-kpi rc-kpi--hero">
-        <p className="rc-kpi__eyebrow">3-Year Total</p>
+        <p className="rc-kpi__eyebrow">3-year added revenue</p>
         <div className="rc-kpi__value tnum">
           <TickingValue value={money(result.threeYearTotal)} />
         </div>
         <p className="rc-kpi__profit tnum">
-          ≈ <TickingValue value={money(result.threeYearTotalProfit)} /> gross profit
+          ≈ <TickingValue value={money(result.threeYearTotalProfit)} /> added profit
         </p>
         <p className="rc-kpi__caption">
-          Every month you wait costs about{" "}
-          <TickingValue value={money(result.threeYearTotal / 36)} />.
+          Every month you wait, you&rsquo;re losing about{" "}
+          <TickingValue value={money(result.threeYearTotal / 36)} /> to voicemail.
         </p>
       </div>
     </div>
@@ -92,7 +92,7 @@ function CompoundStrip({ result }: { result: CalcResult }) {
               <TickingValue value={money(it.value)} />
             </p>
             <p className="rc-compound__profit tnum">
-              ≈ <TickingValue value={money(it.profit)} /> gross profit
+              ≈ <TickingValue value={money(it.profit)} /> added profit
             </p>
             <p className="rc-compound__label">{it.label}</p>
           </div>
@@ -196,11 +196,18 @@ function Methodology() {
       <p className="rc-method__label">How we calculate</p>
       <div className="rc-method__body">
         <p>
-          Headline numbers are <strong>recoverable revenue</strong>. Underneath each one we show
-          <strong> gross profit</strong> using industry-default margins (HVAC: 50% blended;
-          Roofing: 57% repair / 38% replacement; General: 55% / 38%). Margins come from
-          Profitability Partners, who reviewed 200+ home-services P&amp;Ls under PE underwriting
-          at Apex Service Partners.
+          Headline numbers are <strong>added revenue</strong>. Underneath each one we show
+          <strong> added profit</strong>, the real money that hits your business. Your existing
+          operations already cover fixed costs: trucks, salaries, rent, insurance, marketing,
+          office staff. When the AI recovers a job that was going to voicemail, your only
+          incremental cost is direct labor and materials for that specific job, which is what
+          gross margin captures. Unlike your net margin, added profit isn&rsquo;t diluted by
+          overhead, because the overhead is already paid.
+        </p>
+        <p>
+          Industry-default margins: HVAC 50% blended; Roofing 57% repair / 38% replacement;
+          General 55% / 38%. Margins come from Profitability Partners, who reviewed 200+
+          home-services P&amp;Ls under PE underwriting at Apex Service Partners.
         </p>
         <p>
           Missed-call rates ladder 20% / 35% / 55% across the three modes, framed by shop maturity
