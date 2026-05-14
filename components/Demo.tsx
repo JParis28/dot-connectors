@@ -21,8 +21,8 @@ const PHONE_SCENES: ReactNode[] = [
   // 1: Riley on the call
   <div key="s1" className="scene is-active">
     <span className="scene__pill">9:47 PM · Riley on the call</span>
-    <div className="bubble bubble--in">St. Petersburg Roofing, this is Riley. How can I help?</div>
-    <div className="bubble bubble--out">There&apos;s a leak in the kitchen. I need someone out tomorrow.</div>
+    <div className="bubble bubble--in">St. Pete HVAC, this is Riley. How can I help?</div>
+    <div className="bubble bubble--out">My AC just died and it&apos;s 95 out. Can you get someone out tomorrow?</div>
     <div className="bubble bubble--in">Got it. What works better, morning or afternoon?</div>
     <div className="bubble bubble--out">Afternoon.</div>
     <div className="bubble bubble--in">Wednesday 2:30, then. What&apos;s the address?</div>
@@ -89,7 +89,7 @@ export function Demo() {
         <Reveal className="demo__head">
           <p className="demo__eyebrow">How it actually works</p>
           <h2 className="demo__title">One missed call. One booked job.</h2>
-          <p className="demo__sub">Riley answers. Qualifies. Closes the appointment. Whether you&apos;re on the roof, at lunch, or home with the family.</p>
+          <p className="demo__sub">Riley answers. Qualifies. Closes the appointment. Whether you&apos;re on a service call, at lunch, or home with the family.</p>
         </Reveal>
 
         <Reveal>

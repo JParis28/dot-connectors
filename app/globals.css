@@ -714,6 +714,90 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: var(--w-semi);
 }
 
+/* -------- HOW IT WORKS (between Hero and Calculator) -------- */
+.how {
+  padding: 112px var(--gutter) 96px;
+  text-align: center;
+  background: var(--bg-1);
+  border-top: 1px solid rgba(20, 40, 70, 0.06);
+}
+.how__eyebrow {
+  font-size: 11px; font-weight: var(--w-bold);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--c-accent);
+  margin: 0 0 18px;
+}
+.how__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: var(--w-black);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--fg-1);
+  margin: 0 auto 64px;
+  max-width: 760px;
+  text-wrap: balance;
+}
+.how__title .accent {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.how__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 56px;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: left;
+}
+.how__step {
+  position: relative;
+  padding: 24px 4px 0;
+  border-top: 1px solid rgba(20, 40, 70, 0.10);
+}
+.how__step-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: var(--w-bold);
+  letter-spacing: 0.14em;
+  color: var(--c-accent);
+  margin: 0 0 14px;
+}
+.how__step-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.9vw, 24px);
+  font-weight: var(--w-bold);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--fg-1);
+  margin: 0 0 10px;
+}
+.how__step-body {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--fg-2);
+  margin: 0;
+}
+.how__close {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.55;
+  color: var(--fg-2);
+  text-wrap: balance;
+}
+@media (max-width: 880px) {
+  .how__steps { grid-template-columns: 1fr; gap: 28px; max-width: 560px; }
+  .how { padding: 80px var(--gutter) 64px; }
+  .how__title { margin-bottom: 44px; }
+}
+
 /* -------- DEMO SECTION -------- */
 .demo { background: var(--bg-2); }
 .demo__head {
@@ -2981,6 +3065,33 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 560px;
   margin: 0 auto 36px;
   text-wrap: balance;
+}
+.offer__commitment {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto 44px;
+  padding: 22px 28px 24px;
+  border: 1px solid rgba(126, 200, 227, 0.32);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(75, 163, 212, 0.08), rgba(75, 163, 212, 0.02));
+  text-align: left;
+}
+.offer__commitment-eyebrow {
+  font-size: 11px; font-weight: var(--w-bold);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--c-accent-light);
+  margin: 0 0 10px;
+}
+.offer__commitment-body {
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.55;
+  color: rgba(255,255,255,0.95);
+  margin: 0;
+  text-wrap: balance;
+}
+.offer__commitment-body strong { color: var(--c-white); font-weight: var(--w-semi); }
+@media (max-width: 720px) {
+  .offer__commitment { padding: 20px 22px; }
 }
 .offer__terms {
   list-style: none;

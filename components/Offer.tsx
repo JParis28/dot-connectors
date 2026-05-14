@@ -21,7 +21,15 @@ export function Offer() {
             Introductory pricing for the first 25 customers. After the cohort closes, we reset to standard pricing.
           </p>
         </Reveal>
-        <Reveal delay={260}>
+        <Reveal delay={240}>
+          <div className="offer__commitment" aria-label="Our commitment">
+            <p className="offer__commitment-eyebrow">Our commitment</p>
+            <p className="offer__commitment-body">
+              Cancel any month. The 5-year price lock is <strong>our commitment to you</strong>, not yours to us.
+            </p>
+          </div>
+        </Reveal>
+        <Reveal delay={300}>
           <ul className="offer__terms">
             <li>
               <Icon name="check" size={16} strokeWidth={2.5} />
@@ -33,12 +41,6 @@ export function Offer() {
               <Icon name="check" size={16} strokeWidth={2.5} />
               <span>
                 Install fee <strong>($2,997 value)</strong> waived.
-              </span>
-            </li>
-            <li>
-              <Icon name="check" size={16} strokeWidth={2.5} />
-              <span>
-                Cancel any month. The 5-year price lock is our commitment to you, not yours to us.
               </span>
             </li>
           </ul>

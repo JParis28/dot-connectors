@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { HowItWorks } from "@/components/HowItWorks";
 import { Offer } from "@/components/Offer";
 import { Proof } from "@/components/Proof";
 import { Demo } from "@/components/Demo";
@@ -12,6 +13,7 @@ export default function Page() {
     <div data-hero-variant="split">
       <Nav />
       <Hero />
+      <HowItWorks />
       <RoiPage embedded />
       <Offer />
       <Proof />

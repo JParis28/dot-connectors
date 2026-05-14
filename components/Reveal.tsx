@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+type RevealTag = "div" | "section" | "header" | "footer" | "li";
+
 type RevealProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "section" | "header" | "footer";
+  as?: RevealTag;
 };
 
 export function Reveal({ children, delay = 0, className = "", as = "div" }: RevealProps) {
