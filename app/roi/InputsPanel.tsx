@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import type { Inputs, TradeId, ModeId } from "@/lib/roi/calc";
+import type { Inputs, ModeId } from "@/lib/roi/calc";
 import { TRADES, MODES } from "@/lib/roi/calc";
 import { Icon } from "@/components/Icon";
 
@@ -92,31 +92,17 @@ function InputGroup({ title, defaultOpen = true, fullGrid = false, children }: I
 type Props = {
   inputs: Inputs;
   onInput: <K extends keyof Inputs>(key: K, value: Inputs[K]) => void;
-  onTrade: (id: TradeId) => void;
   onMode: (id: ModeId) => void;
 };
 
-export function InputsPanel({ inputs, onInput, onTrade, onMode }: Props) {
+export function InputsPanel({ inputs, onInput, onMode }: Props) {
   const trade = TRADES[inputs.trade];
 
   return (
     <aside className="rc-inputs">
       <div className="rc-inputs__head">
-        <p className="rc-inputs__head-label">Your trade</p>
-        <div className="rc-seg" role="tablist" aria-label="Trade">
-          {(Object.keys(TRADES) as TradeId[]).map((id) => (
-            <button
-              key={id}
-              type="button"
-              role="tab"
-              aria-selected={inputs.trade === id}
-              className={`rc-seg__btn ${inputs.trade === id ? "rc-seg__btn--active" : ""}`}
-              onClick={() => onTrade(id)}
-            >
-              {id === "general" ? "Home services" : TRADES[id].label}
-            </button>
-          ))}
-        </div>
+        <p className="rc-inputs__head-label">Industry</p>
+        <div className="rc-inputs__trade-static" aria-label="Trade: HVAC">HVAC</div>
       </div>
 
       <div className="rc-mode-row">

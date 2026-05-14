@@ -41,18 +41,15 @@ function PageHeader({ result, embedded }: { result: CalcResult; embedded?: boole
     <section className="rc-header">
       <p className="rc-header__eyebrow">Recoverable Revenue Calculator</p>
       <HeadingTag className="rc-header__title">
-        The revenue your front office <span className="accent">never gets the chance to catch</span>.
+        The HVAC calls your front office <span className="accent">never gets the chance to catch</span>.
       </HeadingTag>
       <p className="rc-header__sub">
-        Drop in your trade and a few figures. We&rsquo;ll show you, line by line, the revenue
+        Drop in a few numbers from your shop. We&rsquo;ll show you, line by line, the revenue
         your team can&rsquo;t catch alone, and the added profit underneath it.
       </p>
       <div className="rc-header__meta">
         <span>
           <span className="rc-header__meta-dot" />
-          <strong>Trade · {result.trade.label}</strong>
-        </span>
-        <span>
           <strong>Mode · {result.mode.label} assumptions</strong>
         </span>
         <span>No signup. Numbers stay on this device.</span>
@@ -87,18 +84,11 @@ export function RoiPage({ embedded = false }: { embedded?: boolean } = {}) {
   const setInput = useCallback(<K extends keyof Inputs>(key: K, value: Inputs[K]) => {
     setInputs((prev) => ({ ...prev, [key]: value }));
   }, []);
-  const setTrade = useCallback((id: TradeId) => {
-    setInputs((prev) => defaultInputsFor(id, prev.mode));
-  }, []);
   const setMode = useCallback((id: ModeId) => {
     setInputs((prev) => ({ ...prev, mode: id }));
   }, []);
 
   const result = useMemo(() => calculate(inputs), [inputs]);
-
-  const handlePrint = useCallback(() => {
-    if (typeof window !== "undefined") window.print();
-  }, []);
 
   return (
     <div className="rc-page">
@@ -107,10 +97,9 @@ export function RoiPage({ embedded = false }: { embedded?: boolean } = {}) {
         <InputsPanel
           inputs={inputs}
           onInput={setInput}
-          onTrade={setTrade}
           onMode={setMode}
         />
-        <ResultsPanel result={result} inputs={inputs} onPrint={handlePrint} />
+        <ResultsPanel result={result} inputs={inputs} />
       </main>
     </div>
   );

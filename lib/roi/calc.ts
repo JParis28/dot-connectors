@@ -70,6 +70,7 @@ export type PillarResult = {
   profit: number;
   rows: MathRow[];
   footer?: string;
+  featured?: boolean;
 };
 
 export type CalcResult = {
@@ -442,7 +443,7 @@ export function calculate(inputs: Inputs): CalcResult {
       eyebrow: "Pillar 01",
       title: "Never Miss a Call",
       oneliner:
-        "Calls after 5pm, on weekends, or during busy stretches go to voicemail today. The AI answers every one of them live.",
+        "August Saturday, 95 out, the AC just died. They call you. You're on a job. It goes to voicemail. Riley picks up every one of those calls live.",
       revenue: p1Revenue,
       profit: p1Profit,
       rows: [
@@ -459,7 +460,7 @@ export function calculate(inputs: Inputs): CalcResult {
       id: "p2",
       eyebrow: "Pillar 02",
       title: "No-Show Rescue",
-      oneliner: `About ${pct(m.noShowRate)} of booked customers no-show or cancel last minute. Most contractors lose them. Your AI teammate works the rebook until they're back on the calendar.`,
+      oneliner: `About ${pct(m.noShowRate)} of booked service calls no-show or cancel before the truck rolls. Diagnostic fee gone, route gone. Riley works the rebook until they're back on the calendar.`,
       revenue: p2Revenue,
       profit: p2Profit,
       rows: [
@@ -479,9 +480,10 @@ export function calculate(inputs: Inputs): CalcResult {
       id: "p3",
       eyebrow: "Pillar 03",
       title: "Set It and Forget It",
-      oneliner: `Most customers need a ${p3PlanNoun.replace(/s$/, "")} but nobody offers them one. At job close your AI teammate does, and about ${pct(m.attachRate)} sign up on the spot.`,
+      oneliner: `Every new customer needs a ${p3PlanNoun.replace(/s$/, "")} and nobody hears the pitch. At job close Riley does, every time, and about ${pct(m.attachRate)} sign up on the spot. Recurring revenue that compounds for years.`,
       revenue: p3Revenue,
       profit: p3Profit,
+      featured: true,
       rows: [
         { label: "All your new customers this year", math: "(every one hears the pitch)", value: `${count(p3EligibleNew)} customers` },
         { label: `× ${pct(m.attachRate)} sign up at job close`, math: "FieldEdge: 10–15% without script / 25–30% with mandatory script", value: `${count(p3Attached)} plan members` },
@@ -489,6 +491,7 @@ export function calculate(inputs: Inputs): CalcResult {
         { label: `Added profit (${pct(t.smallMargin)} margin after the tune-up tech)`, math: "", value: money(p3Profit), dim: true },
         { label: "Plan members spend more on tickets too. That compounds in Years 2 and 3.", math: "", value: null, dim: true },
       ],
+      footer: `This is the moat. A new install is a one-time check; a plan member pays you twice a year for a decade. Years 2 and 3 of the math above already include the compound from this pillar.`,
     });
   }
 
@@ -496,7 +499,7 @@ export function calculate(inputs: Inputs): CalcResult {
     id: "p4",
     eyebrow: "Pillar 04",
     title: "Wake the Dead",
-    oneliner: `${count(inputs.pastCustomers)} past customers sitting in your CRM. Most haven't heard from you in years. The AI works them, one batch at a time.`,
+    oneliner: `${count(inputs.pastCustomers)} past install and service customers in your CRM. Most haven't heard from you since the truck pulled away. Riley works them, one batch at a time.`,
     revenue: p4Revenue,
     profit: p4Profit,
     rows: [

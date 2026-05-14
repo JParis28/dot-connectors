@@ -3,10 +3,19 @@
 import { useState } from "react";
 import type { CalcResult, Inputs } from "@/lib/roi/calc";
 import { money, count } from "@/lib/roi/format";
-import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/Reveal";
 import { PillarCard } from "./PillarCard";
 import { TickingValue } from "./Ticking";
+
+function CohortRow() {
+  return (
+    <div className="rc-cohort-row" aria-label="Founding Cohort pricing: $1,997 per month locked for 5 years, first 25 customers, install fee waived">
+      <span className="rc-cohort-row__label">Founding Cohort price</span>
+      <span className="rc-cohort-row__value">$1,997/month, locked for 5 years</span>
+      <span className="rc-cohort-row__note">First 25 customers · install fee waived</span>
+    </div>
+  );
+}
 
 function KpiStrip({ result }: { result: CalcResult }) {
   return (
@@ -44,17 +53,6 @@ function KpiStrip({ result }: { result: CalcResult }) {
           <TickingValue value={money(result.threeYearTotal / 36)} /> to voicemail.
         </p>
       </div>
-    </div>
-  );
-}
-
-function StandaloneCta() {
-  return (
-    <div className="rc-standalone-cta">
-      <a href="/start" className="rc-standalone-cta__btn">
-        Claim what&rsquo;s already yours
-        <Icon name="arrow" size={16} strokeWidth={1.75} />
-      </a>
     </div>
   );
 }
@@ -110,8 +108,7 @@ function CompoundStrip({ result }: { result: CalcResult }) {
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-function AsideRow({ onPrint, inputs }: { onPrint: () => void; inputs: Inputs }) {
-  const [businessName, setBusinessName] = useState("");
+function AsideRow({ inputs }: { inputs: Inputs }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -128,7 +125,7 @@ function AsideRow({ onPrint, inputs }: { onPrint: () => void; inputs: Inputs }) 
       const res = await fetch("/api/email-roi", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), businessName: businessName.trim(), inputs }),
+        body: JSON.stringify({ email: email.trim(), businessName: "", inputs }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) {
@@ -146,17 +143,6 @@ function AsideRow({ onPrint, inputs }: { onPrint: () => void; inputs: Inputs }) 
   return (
     <div className="rc-aside">
       <form className="rc-email-form" onSubmit={submit} aria-busy={status === "sending"}>
-        <span className="rc-email-form__label">Email me this</span>
-        <span className="rc-email-form__divider" />
-        <input
-          className="rc-email-form__input"
-          type="text"
-          placeholder="Business name"
-          value={businessName}
-          onChange={(e) => setBusinessName(e.target.value)}
-          disabled={status === "sending" || status === "sent"}
-        />
-        <span className="rc-email-form__divider" />
         <input
           className="rc-email-form__input"
           type="email"
@@ -171,13 +157,9 @@ function AsideRow({ onPrint, inputs }: { onPrint: () => void; inputs: Inputs }) 
           type="submit"
           disabled={disabled}
         >
-          {status === "sending" ? "Sending…" : status === "sent" ? "Sent ✓" : "Send"}
+          {status === "sending" ? "Sending…" : status === "sent" ? "Sent ✓" : "Email me the report"}
         </button>
       </form>
-      <button type="button" className="rc-print-btn" onClick={onPrint}>
-        <Icon name="file-text" size={14} strokeWidth={1.5} />
-        Print or save as PDF
-      </button>
       {status === "error" ? (
         <p className="rc-aside__status rc-aside__status--error">{errorMsg}</p>
       ) : null}
@@ -267,14 +249,15 @@ function Methodology() {
 export function ResultsPanel({
   result,
   inputs,
-  onPrint,
 }: {
   result: CalcResult;
   inputs: Inputs;
-  onPrint: () => void;
 }) {
   return (
     <div className="rc-results">
+      <Reveal>
+        <CohortRow />
+      </Reveal>
       <Reveal>
         <KpiStrip result={result} />
       </Reveal>
@@ -291,13 +274,14 @@ export function ResultsPanel({
           </Reveal>
         ))}
       </div>
+      <p className="rc-disclaimer">
+        Projections based on industry research and your inputs. Not a guarantee of results.
+        Connectors guarantees what Connectors controls: 95% call answer rate, 30-day go-live. See terms.
+      </p>
       <Reveal>
         <CompoundStrip result={result} />
       </Reveal>
-      <Reveal>
-        <StandaloneCta />
-      </Reveal>
-      <AsideRow onPrint={onPrint} inputs={inputs} />
+      <AsideRow inputs={inputs} />
       <Methodology />
     </div>
   );

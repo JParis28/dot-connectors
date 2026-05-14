@@ -18,12 +18,15 @@ export function PillarCard({ pillar, index }: Props) {
   const iconName = PILLAR_ICONS[index] ?? "phone";
 
   return (
-    <article className={`rc-pillar ${open ? "rc-pillar--open" : ""}`}>
+    <article className={`rc-pillar ${open ? "rc-pillar--open" : ""} ${pillar.featured ? "rc-pillar--featured" : ""}`}>
       <div className="rc-pillar__head">
         <span className="rc-pillar__icon">
           <Icon name={iconName} size={20} strokeWidth={1.5} />
         </span>
         <div className="rc-pillar__title-block">
+          {pillar.featured ? (
+            <span className="rc-pillar__featured-chip">Highest dollar lever</span>
+          ) : null}
           <p className="rc-pillar__eyebrow">{pillar.eyebrow}</p>
           <h3 className="rc-pillar__title">{pillar.title}</h3>
           <p className="rc-pillar__oneliner">{pillar.oneliner}</p>

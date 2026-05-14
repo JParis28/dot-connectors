@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { Offer } from "@/components/Offer";
 import { Proof } from "@/components/Proof";
 import { Demo } from "@/components/Demo";
 import { CTABookCall } from "@/components/CTABookCall";
@@ -11,10 +12,11 @@ export default function Page() {
     <div data-hero-variant="split">
       <Nav />
       <Hero />
+      <RoiPage embedded />
+      <Offer />
       <Proof />
       <Demo />
       <CTABookCall />
-      <RoiPage embedded />
       <Footer />
     </div>
   );

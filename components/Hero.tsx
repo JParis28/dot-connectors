@@ -76,18 +76,18 @@ export function Hero() {
             <span>Built in St. Petersburg, FL</span>
           </div>
           <h1>
-            <span>The phone always</span>
-            <span className="accent">gets answered.</span>
+            <span>We answer 95% of your HVAC calls</span>
+            <span className="accent">in 8 seconds, or your money back.</span>
           </h1>
           <p className="hero__sub">
-            Even when you&apos;re <em>on the job</em>. The first to call back wins. Now that&apos;s always you.
+            500 calls a month. Half go to voicemail. We pick up the half you&apos;re losing.
           </p>
           <div className="hero__ctas">
             <a href="/start" className="btn btn--primary btn--lg">
               Book a Call
               <Icon name="arrow" size={18} />
             </a>
-            <a href="#demo" className="btn btn--ghost">Watch the 12-second demo</a>
+            <a href="#demo" className="hero__ctas-link">Watch the 12-second demo</a>
           </div>
         </div>
 
@@ -129,7 +129,7 @@ export function Hero() {
                 )}
                 {active.has("bubble-1") && (
                   <div className="phone__bubble phone__step">
-                    St. Petersburg Roofing, this is Riley. How can I help?
+                    St. Pete HVAC, this is Riley. How can I help?
                   </div>
                 )}
 
@@ -140,7 +140,7 @@ export function Hero() {
                 )}
                 {active.has("bubble-2") && (
                   <div className="phone__bubble phone__bubble--out phone__step">
-                    There&apos;s a leak in the kitchen. I need someone out tomorrow.
+                    My AC just died and it&apos;s 95 out. I need someone today.
                   </div>
                 )}
 
