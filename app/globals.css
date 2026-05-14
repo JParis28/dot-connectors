@@ -2987,6 +2987,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Print: pillars force-open, single column, CTAs hidden */
 @media print {
+  /* Scope print to the calculator only — hides Hero/Proof/Demo/CTABookCall etc.
+     on the homepage embed without enumerating them. Works on both /roi (Nav +
+     RoiPage + Footer siblings) and / (Nav + Hero + Proof + Demo + CTA +
+     RoiPage + Footer siblings). */
+  *:has(> .rc-page) > *:not(.rc-page) { display: none !important; }
+  /* Belt-and-suspenders for known homepage sections (in case :has fails) */
+  .hero, .proof, .demo, section.cta { display: none !important; }
   .nav, .footer { display: none !important; }
   .rc-inputs, .rc-aside { display: none !important; }
   .rc-shell { grid-template-columns: 1fr !important; padding: 28px 48px !important; }
