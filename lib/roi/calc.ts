@@ -344,9 +344,11 @@ export function calculate(inputs: Inputs): CalcResult {
   const p3Profit = hasPlanPillar ? p3Revenue * t.smallMargin : 0;
 
   // --- Pillar 4 · Database reactivation ---
-  // Pool: past customers in the CRM. ZeroBounce email-decay + carrier churn
+  // Pool: past customers in the CRM, excluding active plan members (who are
+  // already engaged, not dormant). ZeroBounce email-decay + carrier churn
   // data: ~45% reachable on a 5-yr-old list (phone OR email), ~58% on 3-yr.
-  const p4Reachable = inputs.pastCustomers * m.reachableRate;
+  const p4Dormant = inputs.pastCustomers * (1 - inputs.planMembersPct);
+  const p4Reachable = p4Dormant * m.reachableRate;
   const p4Reactivated = p4Reachable * m.reactivateRate;
   const p4Revenue = p4Reactivated * blendedTicket;
   const p4Profit = p4Reactivated * blendedProfit;
@@ -478,12 +480,13 @@ export function calculate(inputs: Inputs): CalcResult {
     profit: p4Profit,
     rows: [
       { label: "Past customers in your CRM", math: "", value: `${count(inputs.pastCustomers)} contacts` },
+      { label: `− ${pct(inputs.planMembersPct)} already on a plan (skip, already engaged)`, math: "", value: `${count(p4Dormant)} dormant` },
       { label: `× ${pct(m.reachableRate)} still reachable (phone or email)`, math: "ZeroBounce + carrier churn data", value: `${count(p4Reachable)} reachable` },
       { label: `× ${pct(m.reactivateRate)} book again when worked`, math: "", value: `${count(p4Reactivated)} customers/yr` },
       { label: `× ${money(blendedTicket)} average ticket`, math: "", value: money(p4Revenue), strong: true },
       { label: `Gross profit (${pct(blendedProfit / blendedTicket)} blended margin)`, math: "", value: money(p4Profit), dim: true },
     ],
-    footer: `Most contractors leave this database completely cold. Even reaching 5% of past customers a year is real money.`,
+    footer: `Most contractors leave this database completely cold. Even reaching 5% of dormant past customers a year is real money.`,
   });
 
   // Renumber eyebrows by visible position. Roofing skips P3, so it reads
