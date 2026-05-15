@@ -126,7 +126,7 @@ export function HowItWorks() {
             <span className="how__step-num" aria-hidden="true">3</span>
             <h3 className="how__step-title">The job books itself.</h3>
             <p className="how__step-body">
-              Slot lands on your Cal.com. Customer gets a text. You see it on your dashboard.
+              Slot lands on your calendar. Customer gets a text. You see it on your dashboard.
             </p>
           </Reveal>
         </ol>

@@ -109,7 +109,7 @@ export default function StartPage({
             </div>
             <div className="bk-card__meta">
               <span><Icon name="clock" size={14} />45 minutes</span>
-              <span><Icon name="video" size={14} />Cal Video</span>
+              <span><Icon name="video" size={14} />Video call</span>
               <span><Icon name="globe" size={14} />America/New_York</span>
             </div>
             <ul className="bk-card__guarantees">
