@@ -1467,8 +1467,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Personalization line — shown when ROI calculator snapshot present in URL */
 .bk-pitch__personalize {
-  display: inline-block;
-  margin: 0 auto 20px;
+  display: block;
+  width: fit-content;
+  max-width: min(560px, 100%);
+  margin: 14px auto 22px;
   padding: 9px 16px;
   background: rgba(75,163,212,0.10);
   border: 1px solid rgba(126,200,227,0.28);
@@ -1477,7 +1479,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.4;
   color: rgba(255,255,255,0.82);
   letter-spacing: -0.005em;
-  max-width: 560px;
   text-align: center;
 }
 .bk-pitch__personalize strong {

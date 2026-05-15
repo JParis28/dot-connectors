@@ -181,7 +181,7 @@ export function InputsPanel({ inputs, onInput, onMode }: Props) {
         <InputGroup title={trade.planNoun} defaultOpen={false}>
           <Field
             label="Already on a plan"
-            help="Roughly what share of your existing customers are enrolled in a plan today. We subtract them from your Wake the Dead pool, since they're already engaged, not dormant."
+            help="Roughly what share of your existing customers are enrolled in a plan today. We subtract them from your reactivation pool, since they're already engaged, not dormant."
             suffix="%"
             value={Math.round(inputs.planMembersPct * 1000) / 10}
             onChange={(v) => handleInput("planMembersPct", v / 100)}

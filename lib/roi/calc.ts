@@ -483,7 +483,6 @@ export function calculate(inputs: Inputs): CalcResult {
       oneliner: `Every new customer needs a ${p3PlanNoun.replace(/s$/, "")} and nobody hears the pitch. At job close Riley does, every time, and about ${pct(m.attachRate)} sign up on the spot. Recurring revenue that compounds for years.`,
       revenue: p3Revenue,
       profit: p3Profit,
-      featured: true,
       rows: [
         { label: "All your new customers this year", math: "(every one hears the pitch)", value: `${count(p3EligibleNew)} customers` },
         { label: `× ${pct(m.attachRate)} sign up at job close`, math: "FieldEdge: 10–15% without script / 25–30% with mandatory script", value: `${count(p3Attached)} plan members` },
@@ -498,7 +497,7 @@ export function calculate(inputs: Inputs): CalcResult {
   pillars.push({
     id: "p4",
     eyebrow: "Pillar 04",
-    title: "Wake the Dead",
+    title: "Reactivate Past Customers",
     oneliner: `${count(inputs.pastCustomers)} past install and service customers in your CRM. Most haven't heard from you since the truck pulled away. Riley works them, one batch at a time.`,
     revenue: p4Revenue,
     profit: p4Profit,
@@ -518,6 +517,14 @@ export function calculate(inputs: Inputs): CalcResult {
   pillars.forEach((p, i) => {
     p.eyebrow = `Pillar ${String(i + 1).padStart(2, "0")}`;
   });
+
+  // Mark the highest-revenue pillar as featured ("HIGHEST DOLLAR LEVER").
+  // Hardcoding any single pillar misrepresents shops where another lever wins.
+  const topIdx = pillars.reduce(
+    (best, p, i, arr) => (p.revenue > arr[best].revenue ? i : best),
+    0,
+  );
+  if (pillars[topIdx].revenue > 0) pillars[topIdx].featured = true;
 
   return {
     inputs,

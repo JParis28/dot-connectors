@@ -29,7 +29,7 @@ function KpiStrip({ result }: { result: CalcResult }) {
         <p className="rc-kpi__profit tnum">
           ≈ <TickingValue value={money(result.year1Profit)} /> added profit
         </p>
-        <p className="rc-kpi__caption">Bigger because you only wake the dead once.</p>
+        <p className="rc-kpi__caption">Bigger because the past-customer reactivation only runs once.</p>
       </div>
       <div className="rc-kpi">
         <p className="rc-kpi__eyebrow">Annual added revenue</p>
@@ -196,68 +196,72 @@ function Methodology() {
       </summary>
       <div className="rc-method__body">
         <p>
-          Headline numbers are <strong>added revenue</strong>. Underneath each one we show
-          <strong> added profit</strong>, the real money that hits your business. Your existing
-          operations already cover fixed costs: trucks, salaries, rent, insurance, marketing,
-          office staff. When the AI recovers a job that was going to voicemail, your only
-          incremental cost is direct labor and materials for that specific job, which is what
-          gross margin captures. Unlike your net margin, added profit isn&rsquo;t diluted by
-          overhead, because the overhead is already paid.
+          <strong>Revenue vs. profit.</strong> The big numbers are <strong>added revenue</strong>.
+          Below each one we show <strong>added profit</strong>, the money that hits your bank
+          account. Your trucks, payroll, rent, and ads are already paid for. When the AI rescues a
+          job that would have gone to voicemail, the only extra cost is the labor and parts for
+          that one job. Everything else is profit.
         </p>
         <p>
-          Industry-default margins: HVAC 50% blended; Roofing 57% repair / 38% replacement;
-          General 55% / 38%. Margins come from Profitability Partners, who reviewed 200+
+          <strong>Margins we use.</strong> HVAC: 50% blended. Roofing: 57% on repairs, 38% on full
+          replacements. General trades: 55% / 38%. Source: Profitability Partners reviewed 200+
           home-services P&amp;Ls under PE underwriting at Apex Service Partners.
         </p>
         <p>
-          Missed-call rates ladder 20% / 35% / 55% across the three modes, framed by shop maturity
-          rather than skepticism. <strong>Conservative</strong> (20%) is the well-run shop with
-          decent business-hours coverage and basic voicemail. <strong>Research</strong> (35%) is
-          the typical small Florida shop. <strong>Aggressive</strong> (55%) is the owner-operator
-          with no real after-hours setup.
+          <strong>How many calls you miss.</strong> Three settings.
         </p>
         <p>
-          The weighted math behind the middle tier: 57% of calls land in business hours, 43% after
-          hours (Contractor In Charge, VoiceCharm). A typical Florida shop misses about 15% in
-          business hours and 55% after hours. (0.57 × 0.15) + (0.43 × 0.55) ≈ 32%, rounded to 35%
-          to absorb peak-season surge. Sources behind the bounds: CallRail&rsquo;s 14% home-services
-          figure represents the floor (tracking-number data only, biased toward sophisticated shops).
-          Invoca&rsquo;s 27% (2024) and 39% (2025, 60M calls) bracket the middle. 411
-          Locals&rsquo; 62% caps the ceiling. AI capture is 100%: the agent picks up every inbound
-          call.
+          <strong>Conservative (20%).</strong> A well-run shop with daytime coverage and basic
+          voicemail.
         </p>
         <p>
-          We model every missed call as potentially job-bearing and discount with your close rate.
-          In practice 40 to 60% of inbound is new-customer intent; the rest is rebooking, vendors,
-          and existing-customer questions, none of which compete with your close rate. The
-          booking-rate input is the lever that lets you tune this for your shop.
+          <strong>Research (35%).</strong> A typical small Florida shop. This is the right number
+          to show first.
         </p>
         <p>
-          No-show rate (5% / 15% / 20%) comes from Allied Emergency Services&rsquo; 2026 Roofing
-          Sales KPIs (sit rate 60 to 85% inverted) and the PMC systematic review of 29
-          appointment-reminder studies (23.1% median baseline). Rebook recovery (10% / 25% / 40%)
-          is an operator estimate motivated by cross-vertical automated-rebook data from medical
-          and dental appointment systems.
+          <strong>Aggressive (55%).</strong> Owner-operator with no real after-hours setup.
         </p>
         <p>
-          Plan attach (5% / 12% / 28%) is an at-close flow metric, not the installed-base stock
-          metric people usually quote. FieldEdge benchmarks 30% industry-average <strong>adoption</strong> (the
-          share of customers who eventually carry a plan) and 25 to 50% as the tech-conversion
-          target on demand calls. Without a mandatory at-close script, documented attach lands 10
-          to 15%. With a mandatory script, best-in-class operators reach 25 to 30%.
-          ServiceTitan&rsquo;s &ldquo;20 to 30% of HVAC revenue&rdquo; benchmark refers to
-          service-agreement revenue share, a different metric, and is not the source for the
-          ladder here.
+          <strong>Where 35% comes from.</strong> 57% of calls come in during business hours, 43%
+          after hours. Florida shops miss about 15% in the day and 55% at night. The math:
+          (0.57 × 0.15) + (0.43 × 0.55) ≈ 32%. We round to 35% to cover busy-season spikes.
         </p>
         <p>
-          Database reachability uses ZeroBounce email decay (~23%/yr) and carrier postpaid churn
-          (~11%/yr). Phone numbers stick when email decays. Reactivation rate (3% / 4.5% / 7%) is
-          an operator estimate; no peer-reviewed home-services rebook-the-dead study exists.
+          <strong>Floor and ceiling.</strong> CallRail reports 14% missed (probably low, since
+          they only see shops sophisticated enough to track calls). Invoca reports 27%–39%. 411
+          Locals reports up to 62%. Our AI answers every call. 100%.
         </p>
         <p>
-          Every pillar expands to show the arithmetic. Conservative is the floor that should still
-          pencil. Research is the defensible middle, the right number to show a prospect on first
-          load. Aggressive is best-in-class with strong process. Nothing is hidden in a black box.
+          <strong>Why we discount by your booking rate.</strong> Not every call is a new job. Some
+          are rebookings, vendors, or existing customers with questions. Industry data says
+          40%–60% of inbound is new-customer intent. The booking-rate input is the lever you use
+          to tune this for your shop.
+        </p>
+        <p>
+          <strong>No-shows.</strong> 5% / 15% / 20% across the three modes. Sources: Allied
+          Emergency Services 2026 Roofing Sales KPIs, and a PMC review of 29 appointment-reminder
+          studies (23.1% median). Rebook recovery is 10% / 25% / 40%, taken from automated-rebook
+          data in medical and dental.
+        </p>
+        <p>
+          <strong>Plan attach.</strong> 5% / 12% / 28% at job close, not your total customer base.
+          Here&rsquo;s what that means. About 30% of customers end up on a plan over time
+          (FieldEdge benchmark). Without a script at close, you get 10%–15% to sign up at the
+          point of sale. With a mandatory script, top operators hit 25%–30%. ServiceTitan&rsquo;s
+          &ldquo;20%–30% of HVAC revenue from plans&rdquo; is a different metric (revenue share,
+          not attach rate).
+        </p>
+        <p>
+          <strong>Reactivating past customers.</strong> Email addresses decay about 23% per year
+          (ZeroBounce). Phone numbers stick longer, about 11% churn per year. So phone wins for
+          reaching old customers. Reactivation rate (3% / 4.5% / 7%) is our operator estimate. No
+          peer-reviewed home-services study exists for this one.
+        </p>
+        <p>
+          <strong>Three modes, all visible.</strong> Every pillar shows its math. Conservative is
+          the floor that should still pencil. Research is the defensible middle, the right number
+          to show on first load. Aggressive is best-in-class with tight process. Nothing is
+          hidden.
         </p>
       </div>
     </details>
