@@ -1566,22 +1566,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-style: italic;
   letter-spacing: -0.005em;
 }
-.bk-host__dogfood {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin: 0;
-  padding: 12px 0 0;
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.62);
-  letter-spacing: -0.005em;
-}
-.bk-host__dogfood svg {
-  color: var(--c-accent-light);
-  flex: 0 0 auto;
-  margin-top: 3px;
-}
 .bk-pitch__footnote {
   margin-top: 28px;
   display: flex;
@@ -3221,11 +3205,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* -------- CALCULATOR — Founding Cohort cost row -------- */
 .rc-cohort-row {
-  display: flex; align-items: baseline; justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 16px 20px;
-  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 22px;
+  margin: 24px 0 0;
   background: linear-gradient(90deg, rgba(75,163,212,0.10), rgba(75,163,212,0.02));
   border: 1px solid rgba(75,163,212,0.25);
   border-radius: 12px;
@@ -3239,13 +3223,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 17px; font-weight: var(--w-bold);
   color: var(--fg-1);
   letter-spacing: -0.01em;
+  line-height: 1.45;
   font-variant-numeric: tabular-nums;
 }
 .rc-cohort-row__note {
-  flex-basis: 100%;
   font-size: 12px;
   color: var(--fg-3);
   line-height: 1.4;
+  margin-top: 2px;
 }
 
 /* -------- CALCULATOR — Pillar featured emphasis -------- */

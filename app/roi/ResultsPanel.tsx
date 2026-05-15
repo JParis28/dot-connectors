@@ -10,10 +10,15 @@ import { trackEvent } from "@/lib/analytics";
 
 function CohortRow() {
   return (
-    <div className="rc-cohort-row" aria-label="Founding Cohort pricing: $1,997 per month locked for 5 years, first 25 customers, install fee waived">
-      <span className="rc-cohort-row__label">Founding Cohort price</span>
-      <span className="rc-cohort-row__value">$1,997/month, locked for 5 years</span>
-      <span className="rc-cohort-row__note">First 25 customers · install fee waived</span>
+    <div
+      className="rc-cohort-row"
+      aria-label="Connectors costs $1,997 per month. Founding cohort, first 25 customers, install fee waived."
+    >
+      <span className="rc-cohort-row__label">Your cost to recover it</span>
+      <span className="rc-cohort-row__value">
+        Connectors costs $1,997/month. Your calculator just showed you what doing nothing costs.
+      </span>
+      <span className="rc-cohort-row__note">Founding cohort · first 25 only · install fee waived</span>
     </div>
   );
 }
@@ -278,10 +283,10 @@ export function ResultsPanel({
   return (
     <div className="rc-results">
       <Reveal>
-        <CohortRow />
+        <KpiStrip result={result} />
       </Reveal>
       <Reveal>
-        <KpiStrip result={result} />
+        <CohortRow />
       </Reveal>
       <div className="rc-section-head">
         <h2 className="rc-section-head__title">

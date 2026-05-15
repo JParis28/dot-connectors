@@ -72,7 +72,6 @@ export default function StartPage({
               </p>
             )}
             <h1 className="bk-pitch__headline">
-              Pick a time.{" "}
               <span className="accent">Stop handing HVAC jobs to the next guy.</span>
             </h1>
             <div className="bk-host">
@@ -94,10 +93,6 @@ export default function StartPage({
               </div>
               <p className="bk-host__quote">
                 &ldquo;We&rsquo;ll pull up your missed-call log and price what each one&rsquo;s worth. After that, you&rsquo;ll know whether to hire us, or just fix it yourself. Most owners find out it&rsquo;s bigger than they thought.&rdquo;
-              </p>
-              <p className="bk-host__dogfood">
-                <Icon name="check" size={13} strokeWidth={2.5} />
-                Riley runs our own front office &mdash; the same system you used to book this call.
               </p>
             </div>
           </div>
