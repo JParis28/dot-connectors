@@ -88,7 +88,7 @@ export function Hero() {
               Book a Call
               <Icon name="arrow" size={18} />
             </BookCallLink>
-            <a href="#demo" className="hero__ctas-link">Watch the 12-second demo</a>
+            <a href="#how" className="hero__ctas-link">Watch the 12-second demo</a>
           </div>
         </div>
 
