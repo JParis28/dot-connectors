@@ -3193,6 +3193,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .offer__guarantees { padding: 22px 20px; }
 }
 
+/* -------- CALCULATOR — Post-Compound CTA ("Claim what's already yours") -------- */
+.rc-results-cta {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 12px;
+}
+.rc-results-cta .btn { min-width: 280px; }
+@media (max-width: 640px) {
+  .rc-results-cta .btn { min-width: 0; width: 100%; }
+}
+
 /* -------- CALCULATOR — Founding Cohort cost row -------- */
 .rc-cohort-row {
   display: flex;

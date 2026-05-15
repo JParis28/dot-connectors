@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { CalcResult, Inputs } from "@/lib/roi/calc";
 import { money, count } from "@/lib/roi/format";
+import { BookCallLink } from "@/components/BookCallLink";
 import { Reveal } from "@/components/Reveal";
 import { PillarCard } from "./PillarCard";
 import { TickingValue } from "./Ticking";
@@ -307,6 +308,13 @@ export function ResultsPanel({
       </p>
       <Reveal>
         <CompoundStrip result={result} />
+      </Reveal>
+      <Reveal>
+        <div className="rc-results-cta">
+          <BookCallLink className="btn btn--primary btn--lg">
+            Claim what&rsquo;s already yours
+          </BookCallLink>
+        </div>
       </Reveal>
       <Methodology />
       <AsideRow inputs={inputs} />
