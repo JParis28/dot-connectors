@@ -3203,7 +3203,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .rc-compound__cta-btn.btn--primary {
   background: var(--c-white);
-  color: transparent;
+  color: var(--c-navy);
   min-width: 320px;
   box-shadow:
     0 8px 28px rgba(0,0,0,0.22),
@@ -3211,17 +3211,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .rc-compound__cta-btn.btn--primary:hover {
   background: var(--c-white);
-  color: transparent;
+  color: var(--c-navy);
   transform: translateY(-2px);
   box-shadow:
     0 14px 36px rgba(0,0,0,0.28),
     0 0 0 1px rgba(126,200,227,0.55);
 }
 .rc-compound__cta-btn > span {
-  background: linear-gradient(135deg, #0B1F3A 0%, #1A4A8C 55%, #4BA3D4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
   color: var(--c-navy);
   font-weight: var(--w-bold);
 }
@@ -3253,12 +3249,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-variant-numeric: tabular-nums;
 }
 .rc-cohort-row__lede {
-  font-size: 14px;
-  font-weight: var(--w-regular);
-  color: var(--c-soft);
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  margin-top: 2px;
+  font-size: 17px;
+  font-weight: var(--w-bold);
+  color: var(--fg-1);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin-top: 4px;
 }
 .rc-cohort-row__note {
   font-size: 12px;
