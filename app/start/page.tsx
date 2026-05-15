@@ -64,16 +64,22 @@ export default function StartPage({
               <span className="bk-pitch__livedot" aria-hidden="true" />
               Every Lead. Answered. Booked.
             </div>
-            {year1Recoverable && (
-              <p className="bk-pitch__personalize">
-                Based on your numbers:{" "}
-                <strong>~{year1Recoverable} recoverable in Year 1.</strong>{" "}
-                Let&rsquo;s talk about it.
-              </p>
+            {year1Recoverable ? (
+              <>
+                <h1 className="bk-pitch__headline">
+                  You ran the numbers.{" "}
+                  <span className="accent">{year1Recoverable}.</span>{" "}
+                  Let&rsquo;s talk about it.
+                </h1>
+                <p className="bk-pitch__attribution">
+                  Your numbers. Your booking rate. Your ticket size. That&rsquo;s what we&rsquo;ll talk about.
+                </p>
+              </>
+            ) : (
+              <h1 className="bk-pitch__headline">
+                <span className="accent">Stop handing HVAC jobs to the next guy.</span>
+              </h1>
             )}
-            <h1 className="bk-pitch__headline">
-              <span className="accent">Stop handing HVAC jobs to the next guy.</span>
-            </h1>
             <div className="bk-host">
               <div className="bk-host__row">
                 <div className="bk-host__avatar">
