@@ -4,26 +4,52 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Icon } from "@/components/Icon";
 import { CalEmbed } from "@/components/CalEmbed";
+import { calculate } from "@/lib/roi/calc";
+import { moneyCompact } from "@/lib/roi/format";
+import { decodeSnapshot } from "@/lib/roi/snapshot";
 
 export const metadata: Metadata = {
-  title: "Schedule Your Strategy Call · Connectors",
+  title: "HVAC Calls Answered in 8 Seconds · Book a Strategy Call · Connectors",
   description:
-    "Pick a time that works for you. We'll talk through your setup and build a plan together.",
+    "95% of your HVAC calls answered in 8 seconds, or your money back. Pick a time and we'll show you exactly what you've been losing.",
   openGraph: {
-    title: "Book a Free Strategy Call · Connectors",
+    title: "HVAC Calls Answered in 8 Seconds · Book a Strategy Call · Connectors",
     description:
-      "Pick a time that works for you. We'll talk through your setup and build a plan together.",
+      "95% of your HVAC calls answered in 8 seconds, or your money back. Pick a time and we'll show you exactly what you've been losing.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book a Free Strategy Call · Connectors",
+    title: "HVAC Calls Answered in 8 Seconds · Book a Strategy Call · Connectors",
     description:
-      "Pick a time that works for you. We'll talk through your setup and build a plan together.",
+      "95% of your HVAC calls answered in 8 seconds, or your money back. Pick a time and we'll show you exactly what you've been losing.",
   },
 };
 
-export default function StartPage() {
+type SearchParams = { s?: string | string[] };
+
+function readPersonalization(searchParams: SearchParams | undefined): string | null {
+  const raw = searchParams?.s;
+  const s = Array.isArray(raw) ? raw[0] : raw;
+  if (!s) return null;
+  const inputs = decodeSnapshot(s);
+  if (!inputs) return null;
+  try {
+    const result = calculate(inputs);
+    if (!Number.isFinite(result.year1) || result.year1 <= 0) return null;
+    return moneyCompact(result.year1);
+  } catch {
+    return null;
+  }
+}
+
+export default function StartPage({
+  searchParams,
+}: {
+  searchParams?: SearchParams;
+}) {
+  const year1Recoverable = readPersonalization(searchParams);
+
   return (
     <div className="bk-page" data-layout="focused">
       <Nav back />
@@ -38,8 +64,16 @@ export default function StartPage() {
               <span className="bk-pitch__livedot" aria-hidden="true" />
               Every Lead. Answered. Booked.
             </div>
+            {year1Recoverable && (
+              <p className="bk-pitch__personalize">
+                Based on your numbers:{" "}
+                <strong>~{year1Recoverable} recoverable in Year 1.</strong>{" "}
+                Let&rsquo;s talk about it.
+              </p>
+            )}
             <h1 className="bk-pitch__headline">
-              Pick a time. <span className="accent">Stop handing jobs to the next guy.</span>
+              Pick a time.{" "}
+              <span className="accent">Stop handing HVAC jobs to the next guy.</span>
             </h1>
             <div className="bk-host">
               <div className="bk-host__row">
@@ -54,15 +88,16 @@ export default function StartPage() {
                   />
                 </div>
                 <div className="bk-host__body">
-                  <p className="bk-host__name">
-                    Nicholas
-                    <Icon name="check" size={14} strokeWidth={2.5} />
-                  </p>
+                  <p className="bk-host__name">Nicholas</p>
                   <p className="bk-host__role">Founder · Connectors · St. Petersburg, FL</p>
                 </div>
               </div>
               <p className="bk-host__quote">
-                &ldquo;We&rsquo;ll pull up your missed-call log and price what each one&rsquo;s worth. After that, you&rsquo;ll know whether to hire us, or just fix it yourself.&rdquo;
+                &ldquo;We&rsquo;ll pull up your missed-call log and price what each one&rsquo;s worth. After that, you&rsquo;ll know whether to hire us, or just fix it yourself. Most owners find out it&rsquo;s bigger than they thought.&rdquo;
+              </p>
+              <p className="bk-host__dogfood">
+                <Icon name="check" size={13} strokeWidth={2.5} />
+                Riley runs our own front office &mdash; the same system you used to book this call.
               </p>
             </div>
           </div>
@@ -82,6 +117,16 @@ export default function StartPage() {
               <span><Icon name="video" size={14} />Cal Video</span>
               <span><Icon name="globe" size={14} />America/New_York</span>
             </div>
+            <ul className="bk-card__guarantees">
+              <li>
+                <Icon name="check" size={14} strokeWidth={2.5} />
+                <span>Live in 30 days, or your money back.</span>
+              </li>
+              <li>
+                <Icon name="check" size={14} strokeWidth={2.5} />
+                <span>95% of HVAC calls answered in 8 seconds, or your money back.</span>
+              </li>
+            </ul>
             <CalEmbed />
             <p className="bk-card__disclosure">
               Before you complete this booking, you&rsquo;ll be asked to consent to receive autodialed and prerecorded calls and text messages from Connectors AI LLC at the number you provide: confirmations, reminders, and follow-ups about your strategy call. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply HELP for help, STOP to opt out at any time. See our <a href="/privacy-policy">Privacy Policy</a> and <a href="/terms-of-use">Terms of Use</a>.
@@ -93,8 +138,8 @@ export default function StartPage() {
       <section className="bk-proof-strip">
         <div className="bk-proof-strip__inner">
           <div className="bk-stat">
-            <div className="bk-stat__num">&lt;60<span className="unit">sec</span></div>
-            <div className="bk-stat__label">Average lead response on the install</div>
+            <div className="bk-stat__num">8<span className="unit">sec</span></div>
+            <div className="bk-stat__label">Riley&rsquo;s answer time &mdash; guaranteed or refunded</div>
           </div>
           <div className="bk-stat">
             <div className="bk-stat__num">24/7</div>
@@ -131,7 +176,7 @@ export default function StartPage() {
             </div>
             <ul className="bk-fineprint__list">
               <li><Icon name="x" size={16} strokeWidth={2.5} />A pitch from a sales team you&rsquo;ll never see again</li>
-              <li><Icon name="x" size={16} strokeWidth={2.5} />A SaaS demo you have to wire up yourself</li>
+              <li><Icon name="x" size={16} strokeWidth={2.5} />A demo you have to figure out on your own</li>
               <li><Icon name="x" size={16} strokeWidth={2.5} />A multi-month onboarding with hidden fees</li>
             </ul>
           </div>

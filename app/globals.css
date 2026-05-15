@@ -1465,6 +1465,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin: 0 auto 32px;
 }
 
+/* Personalization line — shown when ROI calculator snapshot present in URL */
+.bk-pitch__personalize {
+  display: inline-block;
+  margin: 0 auto 20px;
+  padding: 9px 16px;
+  background: rgba(75,163,212,0.10);
+  border: 1px solid rgba(126,200,227,0.28);
+  border-radius: var(--radius-pill);
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: -0.005em;
+  max-width: 560px;
+  text-align: center;
+}
+.bk-pitch__personalize strong {
+  color: var(--c-accent-light);
+  font-weight: var(--w-semi);
+}
+
 /* Host card */
 .bk-host {
   display: flex;
@@ -1529,7 +1549,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   gap: 8px;
 }
-.bk-host__name svg { color: var(--c-accent-light); flex: 0 0 auto; }
 .bk-host__role {
   font-size: 12.5px;
   color: rgba(255,255,255,0.55);
@@ -1545,6 +1564,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.55;
   font-style: italic;
   letter-spacing: -0.005em;
+}
+.bk-host__dogfood {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.62);
+  letter-spacing: -0.005em;
+}
+.bk-host__dogfood svg {
+  color: var(--c-accent-light);
+  flex: 0 0 auto;
+  margin-top: 3px;
 }
 .bk-pitch__footnote {
   margin-top: 28px;
@@ -1634,6 +1669,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 6px;
 }
 .bk-card__meta svg { color: var(--c-accent); }
+.bk-card__guarantees {
+  list-style: none;
+  margin: 0;
+  padding: 14px 26px;
+  background: var(--c-bg-alt);
+  border-bottom: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bk-card__guarantees li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--c-navy);
+  letter-spacing: -0.005em;
+}
+.bk-card__guarantees li svg {
+  color: var(--c-accent);
+  flex: 0 0 auto;
+  margin-top: 3px;
+}
+@media (max-width: 640px) {
+  .bk-card__guarantees { padding: 12px 18px; }
+  .bk-card__guarantees li { font-size: 12.5px; }
+}
 .bk-card__body {
   position: relative;
   background: var(--c-white);

@@ -1,7 +1,6 @@
+import { BookCallLink } from "./BookCallLink";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
-
-const BOOKING_URL = "/start";
 
 export function Offer() {
   return (
@@ -63,10 +62,10 @@ export function Offer() {
           </div>
         </Reveal>
         <Reveal delay={500}>
-          <a href={BOOKING_URL} className="btn btn--primary btn--lg">
+          <BookCallLink className="btn btn--primary btn--lg">
             Book a Call
             <Icon name="arrow" size={18} />
-          </a>
+          </BookCallLink>
           <p className="offer__consent">
             Founding Cohort pricing closes when the first 25 spots are filled.
           </p>

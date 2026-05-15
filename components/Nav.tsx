@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { BrandMark } from "./BrandMark";
+import { BookCallLink } from "./BookCallLink";
 import { Icon } from "./Icon";
 
 type NavProps = {
@@ -31,7 +32,7 @@ export function Nav({ back = false, light = false }: NavProps) {
             Back
           </a>
         ) : (
-          <a href="/start" className="btn btn--nav">Book a Call</a>
+          <BookCallLink className="btn btn--nav">Book a Call</BookCallLink>
         )}
       </div>
     </nav>

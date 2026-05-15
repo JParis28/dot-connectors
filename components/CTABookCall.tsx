@@ -1,9 +1,8 @@
 "use client";
 
+import { BookCallLink } from "./BookCallLink";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
-
-const BOOKING_URL = "/start";
 
 export function CTABookCall() {
   return (
@@ -18,10 +17,10 @@ export function CTABookCall() {
           </p>
         </Reveal>
         <Reveal delay={240}>
-          <a href={BOOKING_URL} className="btn btn--primary btn--lg">
+          <BookCallLink className="btn btn--primary btn--lg">
             Book a Call
             <Icon name="arrow" size={18} />
-          </a>
+          </BookCallLink>
           <p className="cta__consent">
             Free strategy call. No obligation. We&apos;ll send a confirmation after booking.
           </p>

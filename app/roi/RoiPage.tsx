@@ -4,36 +4,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   calculate,
   defaultInputsFor,
-  TRADES,
   type CalcResult,
   type Inputs,
   type ModeId,
-  type TradeId,
 } from "@/lib/roi/calc";
+import { encodeSnapshot, decodeSnapshot } from "@/lib/roi/snapshot";
 import { InputsPanel } from "./InputsPanel";
 import { ResultsPanel } from "./ResultsPanel";
-
-function encodeSnapshot(inputs: Inputs): string {
-  try {
-    const json = JSON.stringify(inputs);
-    return typeof btoa === "function" ? btoa(unescape(encodeURIComponent(json))) : "";
-  } catch {
-    return "";
-  }
-}
-
-function decodeSnapshot(raw: string): Inputs | null {
-  try {
-    const json = decodeURIComponent(escape(atob(raw)));
-    const obj = JSON.parse(json) as Partial<Inputs>;
-    if (!obj || typeof obj !== "object") return null;
-    if (!obj.trade || !(obj.trade in TRADES)) return null;
-    if (obj.mode !== "conservative" && obj.mode !== "research" && obj.mode !== "aggressive") return null;
-    return { ...defaultInputsFor(obj.trade as TradeId, obj.mode as ModeId), ...obj } as Inputs;
-  } catch {
-    return null;
-  }
-}
 
 function PageHeader({ result, embedded }: { result: CalcResult; embedded?: boolean }) {
   const HeadingTag = embedded ? "h2" : "h1";

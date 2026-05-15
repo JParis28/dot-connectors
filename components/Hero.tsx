@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BookCallLink } from "./BookCallLink";
 import { Icon } from "./Icon";
 
 type Step = { at: number; action: "show" | "hide" | "reset"; key?: string };
@@ -83,10 +84,10 @@ export function Hero() {
             In a typical HVAC shop, 1 in 5 calls hits voicemail. Each one is a job going to the next contractor. We pick up every one.
           </p>
           <div className="hero__ctas">
-            <a href="/start" className="btn btn--primary btn--lg">
+            <BookCallLink className="btn btn--primary btn--lg">
               Book a Call
               <Icon name="arrow" size={18} />
-            </a>
+            </BookCallLink>
             <a href="#demo" className="hero__ctas-link">Watch the 12-second demo</a>
           </div>
         </div>
