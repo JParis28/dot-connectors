@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { calculate, defaultInputsFor, TRADES, type Inputs, type ModeId, type TradeId } from "@/lib/roi/calc";
 import { money } from "@/lib/roi/format";
+import { sendCapiEvent } from "@/lib/meta-capi";
 
 function getResend(): Resend | null {
   const key = process.env.RESEND_API_KEY;
@@ -103,6 +104,7 @@ export async function POST(request: NextRequest) {
   const email = typeof body.email === "string" ? body.email.trim() : "";
   const businessName = typeof body.businessName === "string" ? body.businessName.trim().slice(0, 120) : "";
   const inputs = sanitizeInputs(body.inputs);
+  const eventId = typeof body.eventId === "string" && body.eventId ? body.eventId.slice(0, 96) : null;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: "Valid email required" }, { status: 400 });
@@ -141,9 +143,41 @@ export async function POST(request: NextRequest) {
       console.error("[email-roi] Resend returned error:", error);
       return NextResponse.json({ ok: false, error: "Failed to send" }, { status: 502 });
     }
-    return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[email-roi] send threw:", err);
     return NextResponse.json({ ok: false, error: "Failed to send" }, { status: 502 });
   }
+
+  if (eventId) {
+    const fwd = request.headers.get("x-forwarded-for") ?? "";
+    const ip = fwd.split(",")[0]?.trim() || undefined;
+    const ua = request.headers.get("user-agent") ?? undefined;
+    const fbp = request.cookies.get("_fbp")?.value;
+    const fbc = request.cookies.get("_fbc")?.value;
+    const capi = await sendCapiEvent({
+      eventName: "Lead",
+      eventId,
+      eventSourceUrl: shareUrl,
+      userData: {
+        email,
+        clientIpAddress: ip,
+        clientUserAgent: ua,
+        fbp,
+        fbc,
+      },
+      customData: {
+        currency: "USD",
+        value: Math.round(result.year1),
+        content_name: "ROI report",
+        content_category: inputs.trade,
+        ...(businessName ? { business_name: businessName } : {}),
+      },
+    });
+    if (!capi.ok) {
+      const safeLog = capi.reason === "http-error" ? { reason: capi.reason, status: capi.status } : { reason: capi.reason };
+      console.error("[email-roi] CAPI Lead fire failed:", safeLog);
+    }
+  }
+
+  return NextResponse.json({ ok: true });
 }

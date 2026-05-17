@@ -32,7 +32,7 @@ function vercelPayload(params?: EventParams): Record<string, Primitive> | undefi
   return out;
 }
 
-export function trackEvent(name: string, params?: EventParams): void {
+export function trackEvent(name: string, params?: EventParams, eventID?: string): void {
   if (typeof window === "undefined") return;
 
   try {
@@ -46,10 +46,18 @@ export function trackEvent(name: string, params?: EventParams): void {
   }
 
   if (typeof window.fbq === "function") {
+    const meta = eventID ? { eventID } : undefined;
     if (META_STANDARD_EVENTS.has(name)) {
-      window.fbq("track", name, params);
+      window.fbq("track", name, params, meta);
     } else {
-      window.fbq("trackCustom", name, params);
+      window.fbq("trackCustom", name, params, meta);
     }
   }
+}
+
+export function newEventId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
 }

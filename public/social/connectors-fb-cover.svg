@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 624" width="1640" height="624" role="img" aria-label="Connectors — The phone always gets answered. 95% of HVAC calls answered in 8 seconds. Or your money back.">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1F3A"/>
+      <stop offset="55%" stop-color="#0D2F5C"/>
+      <stop offset="100%" stop-color="#1A4A8C"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="78%" cy="32%" r="42%">
+      <stop offset="0%" stop-color="#4BA3D4" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#4BA3D4" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#4BA3D4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="14%" cy="86%" r="34%">
+      <stop offset="0%" stop-color="#7EC8E3" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#7EC8E3" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" x="0" y="0" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0L0 0L0 56" fill="none" stroke="#FFFFFF" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="ringStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4BA3D4" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#7EC8E3" stop-opacity="0.25"/>
+    </linearGradient>
+    <style>
+      .display { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; letter-spacing: -0.025em; fill: #FFFFFF; }
+      .sub { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500; fill: rgba(255,255,255,0.78); letter-spacing: -0.005em; }
+      .accent { fill: #7EC8E3; }
+      .eyebrow { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 0.22em; text-transform: uppercase; fill: #7EC8E3; fill-opacity: 0.85; }
+      .meta { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; fill: rgba(255,255,255,0.55); }
+      .wordmark { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 0.04em; fill: #FFFFFF; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1640" height="624" fill="url(#bg)"/>
+  <rect width="1640" height="624" fill="url(#grid)"/>
+  <rect width="1640" height="624" fill="url(#glow1)"/>
+  <rect width="1640" height="624" fill="url(#glow2)"/>
+
+  <!-- Top-right wordmark -->
+  <g transform="translate(1556, 64)">
+    <text x="0" y="0" class="wordmark" text-anchor="end">Connectors</text>
+    <circle cx="-148" cy="-7" r="6" fill="#4BA3D4"/>
+  </g>
+
+  <!-- Subtle concentric "answered" rings, upper-right composition anchor -->
+  <g transform="translate(1320, 312)" opacity="0.55">
+    <circle r="60" fill="none" stroke="url(#ringStroke)" stroke-width="1.2"/>
+    <circle r="110" fill="none" stroke="url(#ringStroke)" stroke-width="1" stroke-opacity="0.7"/>
+    <circle r="170" fill="none" stroke="url(#ringStroke)" stroke-width="0.8" stroke-opacity="0.4"/>
+    <circle r="240" fill="none" stroke="url(#ringStroke)" stroke-width="0.6" stroke-opacity="0.2"/>
+    <circle r="6" fill="#7EC8E3"/>
+  </g>
+
+  <!-- Main composition (kept within mobile-safe center zone) -->
+  <g transform="translate(96, 232)">
+    <text class="eyebrow" x="0" y="0">An AI front office for HVAC</text>
+    <text class="display" x="0" y="80" font-size="84">The phone always</text>
+    <text class="display" x="0" y="172" font-size="84">gets <tspan class="accent">answered.</tspan></text>
+    <text class="sub" x="0" y="240" font-size="26">95% of calls answered in <tspan font-weight="700" fill="#FFFFFF">8 seconds</tspan>. Or your money back.</text>
+  </g>
+
+  <!-- Bottom-right meta line -->
+  <text class="meta" x="1556" y="576" text-anchor="end">St. Petersburg · Florida</text>
+</svg>

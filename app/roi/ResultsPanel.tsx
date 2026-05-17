@@ -7,7 +7,7 @@ import { BookCallLink } from "@/components/BookCallLink";
 import { Reveal } from "@/components/Reveal";
 import { PillarCard } from "./PillarCard";
 import { TickingValue } from "./Ticking";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, newEventId } from "@/lib/analytics";
 
 function CohortRow() {
   return (
@@ -135,11 +135,12 @@ function AsideRow({ inputs }: { inputs: Inputs }) {
     if (disabled) return;
     setStatus("sending");
     setErrorMsg("");
+    const eventId = newEventId();
     try {
       const res = await fetch("/api/email-roi", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), businessName: firstName.trim(), inputs }),
+        body: JSON.stringify({ email: email.trim(), businessName: firstName.trim(), inputs, eventId }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) {
@@ -149,7 +150,7 @@ function AsideRow({ inputs }: { inputs: Inputs }) {
       }
       setStatus("sent");
       trackEvent("email_capture_submit");
-      trackEvent("Lead", { content_name: "ROI report" });
+      trackEvent("Lead", { content_name: "ROI report" }, eventId);
     } catch {
       setStatus("error");
       setErrorMsg("Network hiccup. Try again.");

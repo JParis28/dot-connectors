@@ -39,10 +39,28 @@ export function CalEmbed() {
       layout: "month_view",
     });
     let bookingFired = false;
-    const fireBookingConversion = () => {
+    const extractBookingUid = (e: unknown): string | undefined => {
+      if (!e || typeof e !== "object") return undefined;
+      const obj = e as Record<string, unknown>;
+      const data = obj.data as Record<string, unknown> | undefined;
+      if (!data) return undefined;
+      const direct = typeof data.uid === "string" ? data.uid : undefined;
+      const booking = data.booking as Record<string, unknown> | undefined;
+      const nested = booking && typeof booking.uid === "string" ? (booking.uid as string) : undefined;
+      return direct || nested;
+    };
+    const fireBookingConversion = (eventPayload?: unknown) => {
       if (bookingFired) return;
       bookingFired = true;
-      if (typeof window.fbq === "function") window.fbq("track", "Schedule");
+      const uid = extractBookingUid(eventPayload);
+      const eventId =
+        uid ||
+        (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+          ? crypto.randomUUID()
+          : `cal-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`);
+      if (typeof window.fbq === "function") {
+        window.fbq("track", "Schedule", { content_name: "Strategy call" }, { eventID: eventId });
+      }
       if (typeof window.gtag === "function") {
         window.gtag("event", "generate_lead", { value: 1997, currency: "USD" });
       }

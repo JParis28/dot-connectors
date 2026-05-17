@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Icon } from "@/components/Icon";
 import { CalEmbed } from "@/components/CalEmbed";
+import { StartViewContent } from "@/components/StartViewContent";
 import { calculate } from "@/lib/roi/calc";
 import { moneyCompact } from "@/lib/roi/format";
 import { decodeSnapshot } from "@/lib/roi/snapshot";
@@ -52,6 +53,7 @@ export default function StartPage({
 
   return (
     <div className="bk-page" data-layout="focused">
+      <StartViewContent year1Recoverable={year1Recoverable} />
       <Nav back />
 
       <section className="bk-hero">
